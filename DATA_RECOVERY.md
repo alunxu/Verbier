@@ -1,6 +1,6 @@
 # Verbier Curator - Data Recovery Guide
 
-This repository contains the source code for the Verbier Festival Curator installation and web experience. To keep the Git repository fast and within size limitations, large media files (audio stems, video assets, high-res images) are **excluded** from version control.
+This repository contains the source code for the Verbier Festival Curator installation and web experience. The accompanying media files (audio stems, video assets, high-res images) are **excluded** from version control primarily because they contain highly valuable, copyrighted performance materials belonging to the Verbier Festival dataset. They are also excluded to keep the Git repository fast and within size limitations.
 
 If you have just cloned this repository or need to restore missing media assets, please follow the steps below.
 
