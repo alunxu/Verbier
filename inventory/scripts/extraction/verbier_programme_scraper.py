@@ -43,8 +43,12 @@ except ImportError:
 BASE_URL = "https://www.verbierfestival.com"
 WAYBACK_CDX_API = "https://web.archive.org/cdx/search/cdx"
 WAYBACK_URL = "https://web.archive.org/web"
-OUTPUT_DIR = Path("/Volumes/EMPLUS-Students/CDS 2026/Project Space/Verbier/programme_data")
-AUDIO_METADATA = Path("/Volumes/EMPLUS-Students/CDS 2026/Project Space/Verbier/parsed_audio_metadata.json")
+OUTPUT_DIR = Path("/Volumes/EMPLUS-Students/CDS 2026/Project Space/Verbier/inventory/programme_data")
+AUDIO_METADATA = Path("/Volumes/EMPLUS-Students/CDS 2026/Project Space/Verbier/inventory/overview/metadata/parsed_audio_metadata.json")
+CACHE_DIR = OUTPUT_DIR / "raw_html"
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+import hashlib
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) VerbierArchiveResearch/1.0",
@@ -55,6 +59,9 @@ HEADERS = {
 # Rate limiting
 REQUEST_DELAY = 0.5  # seconds between requests (most will 404 quickly)
 
+# Heuristics for historical parsing
+KNOWN_COMPOSERS = ["Beethoven", "Mozart", "Brahms", "Haydn", "Schubert", "Dvořák", "Dvorak", "Corelli", "Mendelssohn", "Bach", "Chopin", "Liszt", "Rachmaninoff", "Tchaikovsky", "Shostakovich", "Prokofiev", "Schumann", "Mahler"]
+KNOWN_ENSEMBLES = ["VFO", "VFCO", "VFJO", "String Quartet", "Orchestra", "Choir", "Piano", "Violin", "Cello", "Viola", "Clarinet", "Flute", "Horn"]
 
 # ─── Parsing Functions ────────────────────────────────────────────────────────
 
@@ -160,6 +167,84 @@ def parse_show_page(html: str, url: str) -> dict | None:
     return result
 
 
+def parse_historical_html(html: str, url: str, year: int) -> dict | None:
+    """Heuristic extraction for historical HTML."""
+    soup = BeautifulSoup(html, "html.parser")
+    
+    # Remove scripts, styles, navs
+    for script in soup(["script", "style", "nav", "footer", "header"]):
+        script.extract()
+        
+    text = soup.get_text(separator=" ", strip=True)
+    if not text or len(text) < 100:
+        return None
+        
+    # Extract Date Heuristics
+    parsed_date = None
+    title_str = soup.title.string.strip() if soup.title and soup.title.string else ""
+    
+    # 1. Try URL pattern DDMMYY (e.g. 180708 -> 2008-07-18)
+    date_match = re.search(r'(?P<d>[0-3][0-9])(?P<m>0[1-9]|1[0-2])(?P<y>[0-9]{2})[_\.]', url)
+    if date_match:
+        d, m, y = date_match.group("d"), date_match.group("m"), date_match.group("y")
+        y_prefix = "19" if int(y) > 90 else "20"
+        parsed_date = f"{y_prefix}{y}-{m}-{d}"
+        
+    # 2. Try URL pattern MM_DD (e.g. 07_23.htm -> 2004-07-23)
+    if not parsed_date:
+        date_match = re.search(r'(?P<m>0[1-9]|1[0-2])_(?P<d>[0-3][0-9])\.(htm|php|html)', url)
+        if date_match:
+            d, m = date_match.group("d"), date_match.group("m")
+            parsed_date = f"{year}-{m}-{d}"
+            
+    # 3. Try parsing French title (e.g. Samedi 2 août -> 2008-08-02, 18 Juillet -> 2008-07-18)
+    if not parsed_date and title_str:
+        fr_months = {"juillet": "07", "août": "08", "aout": "08"}
+        # Some titles have non-breaking spaces, so \s+ is good
+        title_match = re.search(r'(?P<d>\d{1,2}|1er)\s+(?P<m>juillet|août|aout)', title_str.lower())
+        if title_match:
+            d_raw = title_match.group("d")
+            m_raw = title_match.group("m")
+            d = "01" if d_raw == "1er" else d_raw.zfill(2)
+            m = fr_months.get(m_raw, "07")
+            parsed_date = f"{year}-{m}-{d}"
+            
+    if not parsed_date:
+        # Fallback to year-07-15
+        parsed_date = f"{year}-07-15"
+        
+    result = {
+        "url": url,
+        "title": title_str if title_str else f"Historical Concert {year}",
+        "date": parsed_date,
+        "time_start": "19:00",
+        "venue": None,
+        "performers": [],
+        "composers": [],
+        "works": [],
+        "description": text[:200] + "...",
+        "orchestra": None,
+        "event_type": "concert",
+        "source": "wayback_historical"
+    }
+    
+    # Heuristic matching
+    for comp in KNOWN_COMPOSERS:
+        if comp in text or comp.upper() in text:
+            if comp not in result["composers"]:
+                result["composers"].append(comp)
+                
+    for ens in KNOWN_ENSEMBLES:
+        if ens in text or ens.lower() in text.lower():
+            result["performers"].append({"name": ens})
+            
+    # If no classical keywords found, likely not a concert page
+    if not result["composers"] and "concert" not in text.lower() and "recital" not in text.lower():
+        return None
+        
+    return result
+
+
 def parse_programme_page(html: str, base_url: str = BASE_URL) -> list[str]:
     """Extract all show URLs from a programme listing page."""
     soup = BeautifulSoup(html, "html.parser")
@@ -184,10 +269,18 @@ def parse_programme_page(html: str, base_url: str = BASE_URL) -> list[str]:
 
 def fetch_page(url: str, session: requests.Session) -> str | None:
     """Fetch a page with retries and rate limiting."""
+    
+    # Check cache first
+    cache_key = hashlib.md5(url.encode()).hexdigest()
+    cache_file = CACHE_DIR / f"{cache_key}.html"
+    if cache_file.exists():
+        return cache_file.read_text(encoding="utf-8")
+
     time.sleep(REQUEST_DELAY)
     try:
         resp = session.get(url, headers=HEADERS, timeout=30, allow_redirects=True)
         if resp.status_code == 200:
+            cache_file.write_text(resp.text, encoding="utf-8")
             return resp.text
         elif resp.status_code == 404:
             return None
@@ -328,6 +421,57 @@ def scrape_wayback_programme(year: int, session: requests.Session) -> list[dict]
         return []
 
 
+def scrape_historical_broad(year: int, session: requests.Session) -> list[dict]:
+    """Broad CDX sweep for historical pages using era-based URLs."""
+    print(f"\n[Wayback Historical] Sweeping domain for {year}...")
+    params = {
+        "url": "verbierfestival.com/*",
+        "output": "json",
+        "fl": "original,timestamp",
+        "filter": "statuscode:200",
+        "collapse": "urlkey",
+        "from": f"{year}0601",
+        "to": f"{year}0831",
+        "limit": 1000
+    }
+    try:
+        resp = None
+        for attempt in range(3):
+            try:
+                resp = session.get(WAYBACK_CDX_API, params=params, timeout=60)
+                if resp.status_code == 200:
+                    break
+            except Exception as e:
+                print(f"    ⚠ CDX API timeout/error on attempt {attempt+1}: {e}")
+                time.sleep(2)
+                
+        if not resp or resp.status_code != 200: return []
+        data = resp.json()
+        if len(data) <= 1: return []
+        
+        urls = []
+        for row in data[1:]:
+            orig, ts = row[0], row[1]
+            # Filter pages that look like they might have content, reject static assets
+            if "jpg" not in orig and "png" not in orig and "css" not in orig and "js" not in orig and "gif" not in orig:
+                urls.append(f"{WAYBACK_URL}/{ts}/{orig}")
+                
+        print(f"    ✓ Found {len(urls)} candidate historical pages")
+        concerts = []
+        
+        for i, u in enumerate(urls[:200]): # Cap to avoid infinite scraping
+            print(f"    [{i+1}/{len(urls)}] Fetching historical {u.split('/')[-1][:30]}...")
+            html = fetch_page(u, session)
+            if html:
+                c = parse_historical_html(html, u, year)
+                if c: concerts.append(c)
+                
+        return concerts
+    except Exception as e:
+        print(f"    ✗ Historical sweep error: {e}")
+        return []
+
+
 def _fetch_show_pages(show_urls: list[str], year: int, session: requests.Session,
                       via_wayback: bool = False) -> list[dict]:
     """Fetch individual show pages."""
@@ -407,6 +551,7 @@ def main():
     parser = argparse.ArgumentParser(description="Verbier Festival Programme Scraper")
     parser.add_argument("--year", type=int, help="Scrape a specific year")
     parser.add_argument("--all", action="store_true", help="Attempt all years 1994-2026")
+    parser.add_argument("--historical", action="store_true", help="Use heuristic text sweeping for historical years")
     parser.add_argument("--from-audio", action="store_true",
                         help="Generate and test show URLs from audio dates")
     parser.add_argument("--wayback-only", action="store_true",
@@ -459,7 +604,7 @@ def main():
 
     # Determine years to process
     if args.all:
-        years = list(range(1994, 2027))
+        years = list(range(2008, 2027))
     elif args.year:
         years = [args.year]
     else:
@@ -475,14 +620,21 @@ def main():
         concerts = []
 
         # Strategy 1: Try live site (only works for current year)
-        if not args.wayback_only:
+        if not args.wayback_only and not args.historical:
             live_concerts = scrape_live_programme(year, session)
             if live_concerts:
                 concerts.extend(live_concerts)
                 print(f"    Live site: {len(live_concerts)} concerts found")
 
-        # Strategy 2: Wayback Machine
-        if not concerts:
+        # Strategy 2: Historical Heuristic Sweep
+        if args.historical:
+            hist_concerts = scrape_historical_broad(year, session)
+            if hist_concerts:
+                concerts.extend(hist_concerts)
+                print(f"    Historical sweep: {len(hist_concerts)} concerts found")
+
+        # Strategy 3: Standard Wayback Machine (modern DOM parsing)
+        if not concerts and not args.historical:
             wb_concerts = scrape_wayback_programme(year, session)
             if wb_concerts:
                 concerts.extend(wb_concerts)

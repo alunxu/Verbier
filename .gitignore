@@ -28,6 +28,16 @@ verbier-curator/public/assets/video/
 *.mov
 *.json.gz
 
+# Python
+__pycache__/
+*.pyc
+
+# Scraped HTML cache (large, regenerable)
+inventory/programme_data/raw_html/
+
+# Build caches
+.vite/
+
 # Env
 .env
 .env.local

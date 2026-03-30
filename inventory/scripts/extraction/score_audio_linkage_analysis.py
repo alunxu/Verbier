@@ -477,7 +477,7 @@ def main():
     report = analyze_linkage(audio_data, score_data)
 
     # Save JSON report
-    output_file = OUTPUT_DIR / "linkage_report.json"
+    output_file = OUTPUT_DIR / "inventory" / "overview" / "linkage_report.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
     print(f"\n      → Report saved to: {output_file}")
@@ -535,12 +535,12 @@ def main():
     """)
 
     # Also save the parsed data for downstream use
-    audio_output = OUTPUT_DIR / "parsed_audio_metadata.json"
+    audio_output = OUTPUT_DIR / "inventory" / "overview" / "metadata" / "parsed_audio_metadata.json"
     with open(audio_output, "w", encoding="utf-8") as f:
         json.dump(audio_data, f, indent=2, ensure_ascii=False)
     print(f"  Parsed audio metadata saved to: {audio_output}")
 
-    score_output = OUTPUT_DIR / "parsed_score_metadata.json"
+    score_output = OUTPUT_DIR / "inventory" / "overview" / "metadata" / "parsed_score_metadata.json"
     with open(score_output, "w", encoding="utf-8") as f:
         json.dump(score_data, f, indent=2, ensure_ascii=False)
     print(f"  Parsed score metadata saved to: {score_output}")

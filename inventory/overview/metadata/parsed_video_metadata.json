@@ -1,0 +1,412 @@
+[
+  {
+    "folder_name": "A10XXXXXXA11VD",
+    "venue_code": "unknown",
+    "year": 2010,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Kurt Masur at the Verbier Festival Academy, Felix Mendelssohn, Symphony No. 4 in A major,m Op. 90, `Italian`",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "C180725XXA11VD",
+    "venue_code": "cinema",
+    "year": 2018,
+    "date": "2018-07-25",
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival, The 25th Anniversary Concert, Babayan Barati Batiashvili Capucon Causse Cho Conunova Frang Frost Goode Gringolts IMAI nIonita Kavakos Kissin Kozhukin Lozakovich Maisky Moreau Pletnev Quasthoff Repin Schiff Shchedrin Sitkovesky Teh Engstroem Trifionov Troussov Vengerov Wang Zimmerman Zukerman",
+    "venue_name_sheet": "Salle des Combins"
+  },
+  {
+    "folder_name": "E080728XXA11VD",
+    "venue_code": "eglise",
+    "year": 2008,
+    "date": "2008-07-28",
+    "time": null,
+    "media_type": "VD",
+    "description": "Nikolai Lugansky, Recital, Janacek*Prokofiev*Listz*Rachmaninov*Chopin, Live at Verbier Festival",
+    "venue_name_sheet": "Eglise de Verbier"
+  },
+  {
+    "folder_name": "E090718XXA11VD",
+    "venue_code": "eglise",
+    "year": 2009,
+    "date": "2009-07-18",
+    "time": null,
+    "media_type": "VD",
+    "description": "Susan Graham, French Songs, Malcolm Martineau, Live at Verbier Festival",
+    "venue_name_sheet": "Eglise de Verbier"
+  },
+  {
+    "folder_name": "E090728XXA11VD",
+    "venue_code": "eglise",
+    "year": 2009,
+    "date": "2009-07-28",
+    "time": null,
+    "media_type": "VD",
+    "description": "Stephen Kovacevich, Bach*Schumann*Beethoven",
+    "venue_name_sheet": "Eglise de Verbier"
+  },
+  {
+    "folder_name": "H07XXXXXXA11VD",
+    "venue_code": "hameau",
+    "year": 2007,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Frans Helmerson at the Verbier Festival Academy, Anton Dvorak, Cello Concerto in B Minor",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "H08XXXXXXA11VD",
+    "venue_code": "hameau",
+    "year": 2008,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Yuri Bashmet at the Verbier Festival Academy, Shostakovich, Sonata for Viola and Piano in C Major, Op. 147, Viola Masterclass",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "H09XXXXXXA11VD",
+    "venue_code": "hameau",
+    "year": 2009,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Ana Chumachenko at the Verbier Festival Academy, Mozart, Violin Concertos Nos. 3, 4, 5 ",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "H1007XXXXA11VD",
+    "venue_code": "unknown",
+    "year": null,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Emmanuel Ax at the Verbier Festival Academy, Ludwig van Beethoven, Piano Sonata No. 2 in A Major, Piano Sonata No. 15 in D Major (the Pastroal), 32 Variations in C minor",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "H10XXXXXXA11VD",
+    "venue_code": "hameau",
+    "year": 2010,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Stephen Kovacevich at the Verbier Festival Academy, Frederic Chopin, Fantasy in F Minor, Op. 49",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "H11XXXXXXA11VD",
+    "venue_code": "hameau",
+    "year": 2011,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Thomas Quastfoff at the Verbier Festival Academy, Franz Schubert, Lieder",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "H12XXXXXXA11VdD",
+    "venue_code": "unknown",
+    "year": null,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Zakhar Bron at the Verbier Festival Academy, Johannes Brahms, Violin Concerto in D Major, Op. 77",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "H13XXXXXXA11VD",
+    "venue_code": "hameau",
+    "year": 2013,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Boris Kuschnir at the Verbier Festival Academy, Wolfgang Amadeus Mozart, Violin Concerto No. 4, K218",
+    "venue_name_sheet": "Centre Culturel du Harneau"
+  },
+  {
+    "folder_name": "M030722XXA11VD",
+    "venue_code": "medran",
+    "year": 2003,
+    "date": "2003-07-22",
+    "time": null,
+    "media_type": "VD",
+    "description": "The Verbier Festival and Academy 10th Anniversary Extravagaza, Lief Ove Andsnes, et al",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "M070726XXA11VD",
+    "venue_code": "medran",
+    "year": 2007,
+    "date": "2007-07-26",
+    "time": null,
+    "media_type": "VD",
+    "description": "Salonen LA Variations Sibelius Symphony No. 5, UBS Verbier Festival Orchestra, Esa-Pekka Salonen",
+    "venue_name_sheet": "Salle Medran"
+  },
+  {
+    "folder_name": "M070727XXA11VD",
+    "venue_code": "medran",
+    "year": 2007,
+    "date": "2007-07-27",
+    "time": null,
+    "media_type": "VD",
+    "description": "Martha Agrerich, Bach Bartok Grieg Lutoslawski Mozart Shoshtakovich, Yuri Bashmet Joshua Bell Renaud Capuchon Stephen Kovacevich Henning Kraggerud Mischa Maisky Gabriela Montero",
+    "venue_name_sheet": "Salle Medran"
+  },
+  {
+    "folder_name": "M0707XXXXA11VD",
+    "venue_code": "unknown",
+    "year": null,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival Highlights 2007, Martha Agrerich Joshua Bell Renaud Capucon Sir Andrew davis Nelson Friere Helene Grimaud Evgeny Kissin Mischa Maisky Thomas Quasthoff",
+    "venue_name_sheet": "Medran, Eglise de Veribier"
+  },
+  {
+    "folder_name": "M090723XXA11VD",
+    "venue_code": "medran",
+    "year": 2009,
+    "date": "2009-07-23",
+    "time": null,
+    "media_type": "VD",
+    "description": "Yuri Temirkanov, Verbier Festival Orchestra, Shostakovich Symphony No. 10",
+    "venue_name_sheet": "Salle Medran"
+  },
+  {
+    "folder_name": "R06XXXXXXA11VD",
+    "venue_code": "unknown",
+    "year": 2006,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "The UBS Verbier Festival Chamber Orchestra plays Wolfgang Amadeus Mozart",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X04XXXXXXA11VD",
+    "venue_code": "unknown",
+    "year": 2004,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Chick Corea & Bobby McFerrin, We Play \u00a6 Bobby McFerrin and the Chick Corea New Trio LIVE AT THE VERBIER FESTIVAL",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X080718XXA11VD",
+    "venue_code": "unknown",
+    "year": 2008,
+    "date": "2008-07-18",
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival Highlights 2008, Martha Agrerich Nicholas Angelich Joshua Yuri Bashmet Quatuor Ebene Manfred Honeck Nikolai Lugansky Mischa Maisky Menahem Presler Julian Rachlin Yuja Wang",
+    "venue_name_sheet": "Various"
+  },
+  {
+    "folder_name": "X090719XXA11VD",
+    "venue_code": "unknown",
+    "year": 2009,
+    "date": "2009-07-19",
+    "time": null,
+    "media_type": "VD",
+    "description": "Nelson Goerner, Chopin*Beethoven, Live at Verbier Festival",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X090722XXA11VD",
+    "venue_code": "unknown",
+    "year": 2009,
+    "date": "2009-07-22",
+    "time": null,
+    "media_type": "VD",
+    "description": "Martha Agrerich, David Guerrier, Beethoven*Shostakovich*Bizet, Verbier Festival Chanber Orchestra, Gabor Takacs-Nagy, Live at Verbier Festival",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X100717XXA11VD",
+    "venue_code": "unknown",
+    "year": 2010,
+    "date": "2010-07-17",
+    "time": null,
+    "media_type": "VD",
+    "description": "Adam Laloum, Schumann Davidsbundlertanze, Op. 6* Debussy Preludes, Book II: Nos. 6 & 7 Schubert Piano Sonata No. 18 in G Major, D. 894* Brahms Intermezzo, Op. 117 No. 2",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X110716XXA11VD",
+    "venue_code": "unknown",
+    "year": 2011,
+    "date": "2011-07-16",
+    "time": null,
+    "media_type": "VD",
+    "description": "Lars Vogt, Verbier Festival Chambewr Orchestra, Gabor Takacs-Nagy, Janacek Schubert Beethoven Brahms Mozart Chopin",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X110723XXA11VD",
+    "venue_code": "unknown",
+    "year": 2011,
+    "date": "2011-07-23",
+    "time": null,
+    "media_type": "VD",
+    "description": "Martin Helmchen, Bach*Liszt*Beethoven",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X12XXXXXXA11VD_1",
+    "venue_code": "unknown",
+    "year": 2012,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 20th Anniversary Edition, The Magic Mountain, DVD1 Martha Agrerich at the Verbier Festival",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X12XXXXXXA11VD_2",
+    "venue_code": "unknown",
+    "year": 2012,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 20th Anniversary Edition, The Magic Mountain, DVD2 Highlights in Piano and Chant",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X12XXXXXXA11VD_3",
+    "venue_code": "unknown",
+    "year": 2012,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 20th Anniversary Edition, The Magic Mountain, DVD3 The Verbier Festival Orchestras",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X12XXXXXXA11VD_4",
+    "venue_code": "unknown",
+    "year": 2012,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 20th Anniversary Edition, The Magic Mountain, DVD4 Mendelsohhn at the Verbier Festival",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X12XXXXXXA11VD_5",
+    "venue_code": "unknown",
+    "year": 2012,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 20th Anniversary Edition, The Magic Mountain, DVD5 Mountain Airs",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X12XXXXXXA12VD",
+    "venue_code": "unknown",
+    "year": 2012,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival Chamber Orchestra, Christmas Concert 2012, Nestle - Vevey",
+    "venue_name_sheet": "Salle Bergere, Nestle"
+  },
+  {
+    "folder_name": "X13XXXXXXA11VD",
+    "venue_code": "unknown",
+    "year": 2013,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Le Contre Inedit Avec Martin T:Son Engstroem",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA11VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015: Avi Avital, Mandolin Recital",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA12VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015. Andras Schiff, Recital",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA13VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015: Verbier Festival Chamber Orchestra, Gabor Takacs-Nagy, Mischa Maisky",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA14VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015. Daniil Trifonov plays Franz Liszt",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA15VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015. Edgar Moreau, Julien Quentin",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA16VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015: Verbier Festival Chamber Orchestra, Valery Gergiev, Direction and Piano, Denis Matsuev & Daniil Trifonov, Piano",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA17VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015. Ilya Gringolts, Truls Mork, Daniil Trifonov",
+    "venue_name_sheet": ""
+  },
+  {
+    "folder_name": "X15XXXXXXA18VD",
+    "venue_code": "unknown",
+    "year": 2015,
+    "date": null,
+    "time": null,
+    "media_type": "VD",
+    "description": "Verbier Festival 2015: Verbier Festival Chamber Orchestra, Esa-Pekka Salonen, Direction,  Joyce Didonato, Mezzo-Soprano",
+    "venue_name_sheet": ""
+  }
+]

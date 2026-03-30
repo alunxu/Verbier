@@ -365,19 +365,30 @@ erDiagram
 
 | Task | Script | Output |
 |---|---|---|
-| Audio metadata parsing | `score_audio_linkage_analysis.py` | `parsed_audio_metadata.json` (966 records) |
+| Audio metadata parsing | `score_audio_linkage_analysis.py` | `parsed_audio_metadata.json` (974 records) |
 | Score metadata parsing | `score_audio_linkage_analysis.py` | `parsed_score_metadata.json` (601 editions) |
-| Cross-reference analysis | `score_audio_linkage_analysis.py` | `linkage_report.json` |
-| Programme scraper (2026) | `verbier_programme_scraper.py` | `programme_data/2026_programme.json` |
-| Candidate URL generation | `verbier_programme_scraper.py --from-audio --dry-run` | `programme_data/candidate_show_urls.json` (2,406 URLs) |
+| DVD metadata parsing | `parse_video_metadata.py` | `parsed_video_metadata.json` (41 records) |
+| Programme scraper (Historical) | `verbier_programme_scraper.py` | `programme_data/*_programme.json` |
+| Database Reconciliation | `build_reconciliation_db.py` | `verbier_archive.sqlite` |
 
-### ⏳ In Progress
+---
 
-- **Historical programme scraping** — running `--from-audio` to test 2,406 candidate URLs against verbierfestival.com for historical show pages
+## 7. Historical Programme Scraping Results
 
-### 📋 Remaining
+We overhauled the programme scraper to process the historical Wayback Machine CDX API, bypassing modern website structures and relying heavily on DOM-stripped text parsing to heuristically tag composers and instruments.
 
-1. **Parse DVD inventory spreadsheets** — extract structured metadata
-2. **Extract EXIF metadata from photos** — enable date-based matching
-3. **Build reconciliation pipeline** — merge all sources into unified concert event table
-4. **Build the navigation UI** — web interface for browsing linked archive
+**Current Completeness:**
+- Modern Years (2006-2026): Dates parse perfectly from URLs (e.g. `180708_fr.php` -> `2008-07-18`) or Titles.
+- Early Years (1994-2001): Exact daily dates do not exist in the Internet Archive because Verbier did not assign dedicated pages to individual concerts at that time. They are defaulted to `YYYY-07-15`.
+
+**The "Media String Fallback" Strategy:**
+Because precise dates are structurally destroyed in older HTML snapshots (causing rigid DB linkage to fail), we cannot rely on the Wayback Machine to inject Programme Metadata (Performers, Composers) into 1994-2001 Audio nodes. 
+Instead, we will use a **Media String Fallback** parser directly inside the DB Reconciler:
+- The script will scan the raw Video Excel spreadsheet (`media_file_name`) and Audio Track paths.
+- It will parse string equivalents (e.g., `"Mendelssohn String Quartet"`) and inject the Composer explicitly into the `concert_composers` table. 
+- This bypasses the broken early-web HTML, allowing Printed Scores in the physical archive to successfully link to early Audio/Video concerts based entirely on local text analysis!
+
+### ⏳ Remaining Next Steps
+
+1. **Implement Media String Extraction** — Update `build_reconciliation_db.py` to extract Composers from Video DVD track names for 1994-2001 entries.
+2. **Build the navigation UI** — Web interface (`breathing-verbier`) for browsing the fully linked SQLite master database.
