@@ -169,14 +169,31 @@ function trackingLoop() {
         const result = handLandmarker.detectForVideo(videoElement, timestamp);
 
         if (result.landmarks && result.landmarks.length > 0) {
-            // Classify handedness
             const hands = {};
-            result.landmarks.forEach((landmarks, i) => {
-                const handedness = result.handednesses?.[i]?.[0]?.categoryName || (i === 0 ? 'Right' : 'Left');
-                // Mirror: webcam is mirrored, so 'Right' in detection = user's left hand
-                const actualHand = handedness === 'Right' ? 'Left' : 'Right';
-                hands[actualHand] = smoothLandmarks(landmarks, actualHand);
-            });
+            
+            // Robust Left/Right assignment
+            if (result.landmarks.length === 2) {
+                // If 2 hands are detected, sort by X coordinate to guarantee one is Left and one is Right
+                // Because webcam stream is mirrored (scaleX(-1)), the user's physical left hand appears on 
+                // the right side of the raw image (x ~ 0.8), and the physical right hand on the left (x ~ 0.2).
+                const x0 = result.landmarks[0][0].x;
+                const x1 = result.landmarks[1][0].x;
+                
+                if (x0 > x1) {
+                    hands['Left'] = smoothLandmarks(result.landmarks[0], 'Left');
+                    hands['Right'] = smoothLandmarks(result.landmarks[1], 'Right');
+                } else {
+                    hands['Right'] = smoothLandmarks(result.landmarks[0], 'Right');
+                    hands['Left'] = smoothLandmarks(result.landmarks[1], 'Left');
+                }
+            } else {
+                // Single hand: fallback to MediaPipe's guess, but flipped for the mirror
+                result.landmarks.forEach((landmarks, i) => {
+                    const handedness = result.handednesses?.[i]?.[0]?.categoryName || (i === 0 ? 'Right' : 'Left');
+                    const actualHand = handedness === 'Right' ? 'Left' : 'Right';
+                    hands[actualHand] = smoothLandmarks(landmarks, actualHand);
+                });
+            }
 
             // Classify gestures
             const gestures = classifyGestures(hands);
@@ -299,10 +316,10 @@ function applyGesturesToAudio(gestures, hands) {
         // Both hands detected — use spread for stereo width
         const panRange = GESTURE.panRange;
         leftHandInstruments.forEach(inst => {
-            setStemPan(inst, -gestures.handSpread * panRange);
+            setStemPan(inst, -(gestures.handSpread * 1.5) * panRange);
         });
         rightHandInstruments.forEach(inst => {
-            setStemPan(inst, gestures.handSpread * panRange);
+            setStemPan(inst, (gestures.handSpread * 1.5) * panRange);
         });
     } else {
         // Single hand: use hand X position for panning

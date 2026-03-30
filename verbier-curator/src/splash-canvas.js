@@ -9,7 +9,7 @@
 const MUSICAL_GLYPHS = ['♩', '♪', '♫', '♬', '𝄞', '𝄢', '𝄡', '♭', '♯', '♮',
     '𝅝', '𝅗𝅥', '𝅘𝅥', '𝅘𝅥𝅮', '𝅘𝅥𝅯'];
 
-// Vivid, bright colors
+// Vivid, bright and high-contrast colors
 const COLORS = {
     purple: [124, 108, 240],
     pink: [240, 108, 155],
@@ -18,6 +18,8 @@ const COLORS = {
     white: [232, 234, 246],
     coral: [255, 127, 95],
     lavender: [180, 140, 255],
+    navy: [13, 30, 58],        // Deep contrast
+    deepRed: [130, 20, 50]     // Deep contrast
 };
 
 function rgba(color, alpha) {
@@ -62,15 +64,15 @@ function resize() {
 function createParticles() {
     particles = [];
     const count = Math.min(133, Math.floor(width * height / 12000));
-    const colorChoices = [COLORS.purple, COLORS.pink, COLORS.gold, COLORS.teal, COLORS.lavender, COLORS.coral];
+    const colorChoices = [COLORS.purple, COLORS.gold, COLORS.teal, COLORS.pink, COLORS.lavender, COLORS.coral];
     for (let i = 0; i < count; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            r: 1.2 + Math.random() * 3.0,
+            r: 1.5 + Math.random() * 3.5,
             vx: (Math.random() - 0.5) * 0.3,
             vy: -0.2 - Math.random() * 0.45,
-            alpha: 0.4 + Math.random() * 0.6,
+            alpha: 0.6 + Math.random() * 0.4,
             pulse: Math.random() * Math.PI * 2,
             color: colorChoices[Math.floor(Math.random() * colorChoices.length)]
         });
@@ -98,14 +100,14 @@ function createStaffWaves() {
 }
 
 // ────────────────────────────────────────────────────────────
-// Floating musical glyphs — BRIGHTER
+// Floating musical glyphs — HIGH VISIBILITY
 // ────────────────────────────────────────────────────────────
 function createGlyphs() {
     glyphs = [];
     const count = 22;
-    const colorChoices = [COLORS.purple, COLORS.pink, COLORS.gold, COLORS.teal, COLORS.lavender, COLORS.coral];
+    const colorChoices = [COLORS.purple, COLORS.teal, COLORS.pink, COLORS.lavender, COLORS.coral, COLORS.gold];
     for (let i = 0; i < count; i++) {
-        const size = 28 + Math.random() * 56;
+        const size = 35 + Math.random() * 60; // larger
         glyphs.push({
             x: Math.random() * width,
             y: Math.random() * height,
@@ -115,11 +117,11 @@ function createGlyphs() {
             rotationSpeed: (Math.random() - 0.5) * 0.006,
             vx: (Math.random() - 0.5) * 0.5,
             vy: -0.25 - Math.random() * 0.45,
-            alpha: 0.35 + Math.random() * 0.4,   // much brighter!
+            alpha: 0.75 + Math.random() * 0.25,   // heavily opaque
             pulsePhase: Math.random() * Math.PI * 2,
             pulseSpeed: 0.5 + Math.random() * 0.8,
             color: colorChoices[Math.floor(Math.random() * colorChoices.length)],
-            glowRadius: 12 + Math.random() * 24
+            glowRadius: 15 + Math.random() * 35
         });
     }
 }
@@ -260,8 +262,8 @@ function drawGlyphs() {
         ctx.translate(g.x, g.y);
         ctx.rotate(g.rotation);
 
-        // Glow behind glyph
-        ctx.shadowColor = rgba(g.color, 0.6);
+        // High contrast white glow behind glyph
+        ctx.shadowColor = rgba(COLORS.white, 0.9);
         ctx.shadowBlur = g.glowRadius * pulse;
 
         ctx.font = `${g.size}px 'Cormorant Garamond', serif`;

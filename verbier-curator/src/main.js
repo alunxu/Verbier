@@ -7,7 +7,7 @@
  */
 
 import './style.css';
-import { initLandscape, disposeLandscape, resumeLandscape } from './breathing-verbier/landscape.js';
+import { initLandscape, disposeLandscape, resumeLandscape, stopLandscapeAudio } from './breathing-verbier/landscape.js';
 import { initReOrchestrate, disposeReOrchestrate, startPlayback, stopPlayback } from './re-orchestrate/stem-mixer.js';
 import { initHandTracker, stopHandTracker } from './re-orchestrate/hand-tracker.js';
 import { initOverlay, clearOverlay } from './re-orchestrate/overlay-renderer.js';
@@ -114,6 +114,9 @@ async function handlePerformanceSelect(performance) {
 
     console.log(`Selected: ${performance.composer} — ${performance.title}`);
 
+    // Stop the hover preview audio immediately so it doesn't bleed into the re-orchestration mix
+    stopLandscapeAudio();
+
     // Show loading
     const loadingOverlay = document.getElementById('loading-overlay');
     const loadingText = document.getElementById('loading-text');
@@ -175,6 +178,7 @@ async function enterReOrchestrateMode(performance) {
 
     // Try webcam / hand tracking
     let hasWebcam = false;
+    let timeoutId;
     try {
         hasWebcam = await Promise.race([
             initHandTracker({
@@ -184,16 +188,18 @@ async function enterReOrchestrateMode(performance) {
                 performance,
                 audioContext: state.audioContext
             }),
-            new Promise((resolve) =>
-                setTimeout(() => {
+            new Promise((resolve) => {
+                timeoutId = setTimeout(() => {
                     console.warn('Webcam init timeout — falling back to sliders');
                     // Cancel the hand tracker so it doesn't start late
                     stopHandTracker();
                     resolve(false);
-                }, 8000)
-            )
+                }, 15000); // 15 seconds to allow for deep model downloads
+            })
         ]);
+        clearTimeout(timeoutId);
     } catch (e) {
+        clearTimeout(timeoutId);
         console.warn('Hand tracking unavailable:', e.message);
         stopHandTracker();
     }

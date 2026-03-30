@@ -808,6 +808,10 @@ function handleResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+export function stopLandscapeAudio() {
+    if (audioPreview) audioPreview.stop();
+}
+
 export function disposeLandscape() {
     isActive = false;
     if (animFrameId) cancelAnimationFrame(animFrameId);

@@ -209,6 +209,12 @@ export function setStemMuted(instrument, muted) {
         const targetGain = muted ? 0 : 0.8; // True mute (0 gain) when fist closed
         node.gain.cancelScheduledValues(audioContext.currentTime);
         node.gain.linearRampToValueAtTime(targetGain, audioContext.currentTime + fadeTime);
+
+        // Update VU meter immediately for visual feedback
+        const vuBar = document.getElementById(`vu-${instrument}`);
+        if (vuBar) {
+            vuBar.style.height = `${targetGain * 100}%`;
+        }
     }
 }
 

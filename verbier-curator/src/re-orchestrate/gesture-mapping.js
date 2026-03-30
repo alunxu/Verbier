@@ -54,44 +54,34 @@ function getHandHeight(landmarks) {
 }
 
 /**
- * Determine if hand is making a fist.
- * Fist = 0-1 fingers extended.
+ * Determine if hand is making a fist based on finger-to-wrist distances.
+ * A fist has most of the fingertips pulled closer to the wrist than their MCP joints.
  */
 function isFistClosed(landmarks) {
-    const extended = countExtendedFingers(landmarks);
-    return extended <= 1;
-}
-
-/**
- * Count extended fingers.
- * A finger is extended if its tip Y is above (less than) its PIP Y.
- */
-function countExtendedFingers(landmarks) {
-    const fingerPairs = [
-        [HAND_LANDMARKS.INDEX_TIP, HAND_LANDMARKS.INDEX_PIP],
-        [HAND_LANDMARKS.MIDDLE_TIP, HAND_LANDMARKS.MIDDLE_PIP],
-        [HAND_LANDMARKS.RING_TIP, HAND_LANDMARKS.RING_PIP],
-        [HAND_LANDMARKS.PINKY_TIP, HAND_LANDMARKS.PINKY_PIP]
-    ];
-
-    let count = 0;
-    for (const [tipIdx, pipIdx] of fingerPairs) {
-        const tip = landmarks[tipIdx];
-        const pip = landmarks[pipIdx];
-        // In normalized coords, Y increases downward
-        // Finger extended if tip is above (lower Y) than PIP
-        if (tip.y < pip.y - GESTURE.fingerExtendedThreshold) {
-            count++;
+    const wrist = landmarks[0];
+    let foldedCount = 0;
+    
+    // Check main 4 fingers: Index, Middle, Ring, Pinky
+    const tips = [8, 12, 16, 20];
+    const mcps = [5, 9, 13, 17];
+    
+    for (let i = 0; i < 4; i++) {
+        const tip = landmarks[tips[i]];
+        const mcp = landmarks[mcps[i]];
+        
+        // Calculate 2D Euclidean distance to the wrist
+        const distTipToWrist = Math.sqrt((tip.x - wrist.x)**2 + (tip.y - wrist.y)**2);
+        const distMcpToWrist = Math.sqrt((mcp.x - wrist.x)**2 + (mcp.y - wrist.y)**2);
+        
+        // If the tip is as close (or nearly as close) to the wrist as the knuckle, it is folded.
+        // We use a 1.25x scaling factor because fingers can be angled.
+        if (distTipToWrist < distMcpToWrist * 1.25) {
+            foldedCount++;
         }
     }
-
-    // Thumb: compare tip to IP joint using X distance (thumb extends sideways)
-    const thumbTip = landmarks[HAND_LANDMARKS.THUMB_TIP];
-    const thumbIP = landmarks[HAND_LANDMARKS.THUMB_IP];
-    const thumbExtended = Math.abs(thumbTip.x - thumbIP.x) > 0.04;
-    if (thumbExtended) count++;
-
-    return count;
+    
+    // Consider it a closed fist if at least 3 fingers are folded tightly.
+    return foldedCount >= 3;
 }
 
 /**

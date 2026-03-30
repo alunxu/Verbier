@@ -107,9 +107,9 @@ export const HAND_LANDMARKS = {
 
 // Instrument register classification (for L/R hand assignment)
 export const INSTRUMENT_REGISTER = {
-    low: ['cello', 'bass', 'bassoon', 'tuba', 'trombone'],
+    low: ['cello', 'violoncello', 'bass', 'bassoon', 'tuba', 'trombone', 'strings3', 'keyboard'],
     mid: ['viola', 'horn', 'clarinet', 'oboe', 'trumpet'],
-    high: ['violin', 'violin1', 'violin2', 'flute', 'piccolo', 'piano']
+    high: ['violin', 'violin1', 'violin2', 'strings', 'strings2', 'flute', 'piccolo', 'piano']
 };
 
 // Performance budget

@@ -83,8 +83,8 @@ function drawHandSkeleton(landmarks, color, handLabel) {
         const b = landmarks[end];
 
         ctx.beginPath();
-        ctx.moveTo(a.x * w, a.y * h);
-        ctx.lineTo(b.x * w, b.y * h);
+        ctx.moveTo((1.0 - a.x) * w, a.y * h);
+        ctx.lineTo((1.0 - b.x) * w, b.y * h);
         ctx.stroke();
     }
 
@@ -97,7 +97,7 @@ function drawHandSkeleton(landmarks, color, handLabel) {
         const radius = [0, 4, 8, 12, 16, 20].includes(i) ? 5 : 3;
 
         ctx.beginPath();
-        ctx.arc(lm.x * w, lm.y * h, radius, 0, Math.PI * 2);
+        ctx.arc((1.0 - lm.x) * w, lm.y * h, radius, 0, Math.PI * 2);
         ctx.fill();
     }
 
@@ -110,7 +110,7 @@ function drawHandSkeleton(landmarks, color, handLabel) {
     ctx.textAlign = 'center';
     ctx.fillText(
         handLabel.toUpperCase(),
-        wrist.x * w,
+        (1.0 - wrist.x) * w,
         wrist.y * h + 25
     );
 }
@@ -123,7 +123,7 @@ function drawInstrumentLabels(landmarks, instruments, color, handY) {
     const wrist = landmarks[0];
 
     // Position labels near the hand
-    const baseX = wrist.x * w;
+    const baseX = (1.0 - wrist.x) * w;
     const baseY = wrist.y * h - 40;
     const labelHeight = 20;
 
