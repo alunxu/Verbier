@@ -1,0 +1,36 @@
+# Node / dependencies
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Data, Logs, Audio/Video Assets exclusions
+# Since we work with huge high-fidelity datasets, we'll exclude them entirely.
+verbier-curator/public/assets/audio/
+verbier-curator/public/assets/stems/
+verbier-curator/public/assets/video/
+*.wav
+*.ogg
+*.mp3
+*.mp4
+*.mkv
+*.mov
+*.json.gz
+
+# Env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

@@ -1,0 +1,377 @@
+[
+  {
+    "id": "dcml_01",
+    "title": "n01op18 1 01",
+    "composer": "Ludwig van Beethoven",
+    "ensemble": "String Quartet",
+    "genre": "chamber",
+    "instrumentation": [
+      "violin1",
+      "violin2",
+      "viola",
+      "cello"
+    ],
+    "audio_url": "assets/audio/dcml_01_mix.ogg",
+    "stems": {
+      "violin1": "assets/stems/dcml_01_violin1.ogg",
+      "violin2": "assets/stems/dcml_01_violin2.ogg",
+      "viola": "assets/stems/dcml_01_viola.ogg",
+      "cello": "assets/stems/dcml_01_cello.ogg"
+    },
+    "video_url": null,
+    "features_timeseries_url": "assets/features/dcml_01_mix_features.json",
+    "preview_excerpt": {
+      "start_sec": 5,
+      "end_sec": 20
+    },
+    "features_summary": {
+      "spectral_centroid_mean": 400.88864997675665,
+      "spectral_centroid_std": 213.50583413624597,
+      "spectral_bandwidth_mean": 358.44592468482676,
+      "spectral_bandwidth_std": 274.0594218118778,
+      "spectral_flux_mean": 1.334600806236267,
+      "spectral_flux_std": 3.411837100982666,
+      "rms_mean": 0.11616478860378265,
+      "rms_std": 0.05304431915283203,
+      "tempo_bpm": 107.666015625,
+      "dominant_chroma": 0,
+      "tonnetz_mean": [
+        0.035255251196547724,
+        0.2694268758696956,
+        -0.10120454000729409,
+        0.05965991745666742,
+        -0.014818011078353066,
+        0.033997768956620884
+      ],
+      "mfcc_mean": [
+        -467.277587890625,
+        107.90277862548828,
+        57.34760284423828,
+        32.31907653808594,
+        16.319414138793945,
+        5.573268890380859,
+        -1.3142907619476318,
+        -7.104615688323975,
+        -11.952099800109863,
+        -15.540635108947754,
+        -17.864648818969727,
+        -19.371734619140625,
+        -19.746780395507812
+      ]
+    },
+    "umap_position": {
+      "x": 0.9485497983569858,
+      "y": 0.21391099091896526
+    }
+  },
+  {
+    "id": "dcml_02",
+    "title": "op01n01a",
+    "composer": "Arcangelo Corelli",
+    "ensemble": "Trio Sonata",
+    "genre": "baroque",
+    "instrumentation": [
+      "strings",
+      "strings2",
+      "strings3",
+      "keyboard"
+    ],
+    "audio_url": "assets/audio/dcml_02_mix.ogg",
+    "stems": {
+      "strings": "assets/stems/dcml_02_strings.ogg",
+      "strings2": "assets/stems/dcml_02_strings2.ogg",
+      "strings3": "assets/stems/dcml_02_strings3.ogg",
+      "keyboard": "assets/stems/dcml_02_keyboard.ogg"
+    },
+    "video_url": null,
+    "features_timeseries_url": "assets/features/dcml_02_mix_features.json",
+    "preview_excerpt": {
+      "start_sec": 5,
+      "end_sec": 20
+    },
+    "features_summary": {
+      "spectral_centroid_mean": 457.1522542108581,
+      "spectral_centroid_std": 125.34985092170615,
+      "spectral_bandwidth_mean": 445.4392576855392,
+      "spectral_bandwidth_std": 243.51343267674753,
+      "spectral_flux_mean": 1.6056625843048096,
+      "spectral_flux_std": 3.8873491287231445,
+      "rms_mean": 0.16564321517944336,
+      "rms_std": 0.05082009360194206,
+      "tempo_bpm": 107.666015625,
+      "dominant_chroma": 0,
+      "tonnetz_mean": [
+        0.04806677919260865,
+        0.3266838289365217,
+        -0.16673993357625658,
+        -0.0024239670008240925,
+        -0.02739181566023135,
+        -0.004213685558595645
+      ],
+      "mfcc_mean": [
+        -452.6683044433594,
+        112.76322174072266,
+        43.46377182006836,
+        7.406167984008789,
+        -12.062973022460938,
+        -12.923383712768555,
+        0.4126162827014923,
+        17.1088809967041,
+        28.285730361938477,
+        29.794902801513672,
+        23.551298141479492,
+        13.966232299804688,
+        4.744261264801025
+      ]
+    },
+    "umap_position": {
+      "x": 0.880867769662721,
+      "y": 0.17396299156065229
+    }
+  },
+  {
+    "id": "dcml_03",
+    "title": "01op12a",
+    "composer": "Felix Mendelssohn",
+    "ensemble": "String Quartet",
+    "genre": "chamber",
+    "instrumentation": [
+      "violin1",
+      "violin2",
+      "viola",
+      "cello"
+    ],
+    "audio_url": "assets/audio/dcml_03_mix.ogg",
+    "stems": {
+      "violin1": "assets/stems/dcml_03_violin1.ogg",
+      "violin2": "assets/stems/dcml_03_violin2.ogg",
+      "viola": "assets/stems/dcml_03_viola.ogg",
+      "cello": "assets/stems/dcml_03_cello.ogg"
+    },
+    "video_url": null,
+    "features_timeseries_url": "assets/features/dcml_03_mix_features.json",
+    "preview_excerpt": {
+      "start_sec": 5,
+      "end_sec": 20
+    },
+    "features_summary": {
+      "spectral_centroid_mean": 353.19687458870067,
+      "spectral_centroid_std": 127.33017687297182,
+      "spectral_bandwidth_mean": 323.14319964235943,
+      "spectral_bandwidth_std": 216.53994419586866,
+      "spectral_flux_mean": 1.1875557899475098,
+      "spectral_flux_std": 3.053799629211426,
+      "rms_mean": 0.09782876819372177,
+      "rms_std": 0.03571893274784088,
+      "tempo_bpm": 107.666015625,
+      "dominant_chroma": 3,
+      "tonnetz_mean": [
+        -0.2488217259925463,
+        0.2172262792532314,
+        0.16627572410028035,
+        0.018069215545303777,
+        0.009802867873009439,
+        0.05906692741750518
+      ],
+      "mfcc_mean": [
+        -493.7643127441406,
+        119.08944702148438,
+        74.3597412109375,
+        47.5456657409668,
+        25.34019660949707,
+        5.289934158325195,
+        -8.58383846282959,
+        -16.64802360534668,
+        -19.64582061767578,
+        -19.546875,
+        -17.943700790405273,
+        -16.065574645996094,
+        -14.497785568237305
+      ]
+    },
+    "umap_position": {
+      "x": 1.0,
+      "y": 0.21121544026445258
+    }
+  },
+  {
+    "id": "locked_00",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.2720464552858683,
+      "y": 0.7641277413918169
+    },
+    "features_summary": {
+      "dominant_chroma": 9,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_01",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.7248976819985734,
+      "y": 0.4156273538879127
+    },
+    "features_summary": {
+      "dominant_chroma": 5,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_02",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.7928803275418431,
+      "y": 0.6130752673588574
+    },
+    "features_summary": {
+      "dominant_chroma": 6,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_03",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.4674111414133806,
+      "y": 0.4705723148405635
+    },
+    "features_summary": {
+      "dominant_chroma": 6,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_04",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.25861381446566195,
+      "y": 0.6749987590869838
+    },
+    "features_summary": {
+      "dominant_chroma": 6,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_05",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.9305710716773226,
+      "y": 0.7762058455351871
+    },
+    "features_summary": {
+      "dominant_chroma": 11,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_06",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.06661264473532555,
+      "y": 0.3246451267885943
+    },
+    "features_summary": {
+      "dominant_chroma": 10,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_07",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.5158894121752376,
+      "y": 0.33538148788053274
+    },
+    "features_summary": {
+      "dominant_chroma": 10,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_08",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.89154411966176,
+      "y": 0.19813374421626812
+    },
+    "features_summary": {
+      "dominant_chroma": 10,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  },
+  {
+    "id": "locked_09",
+    "title": "Upcoming Addition",
+    "composer": "In Process",
+    "is_placeholder": true,
+    "umap_position": {
+      "x": 0.1437675348925968,
+      "y": 0.10334337077194788
+    },
+    "features_summary": {
+      "dominant_chroma": 7,
+      "rms_mean": 0.03,
+      "spectral_bandwidth_mean": 1000,
+      "spectral_flux_mean": 0.1,
+      "spectral_centroid_mean": 1500,
+      "tempo_bpm": 80
+    }
+  }
+]

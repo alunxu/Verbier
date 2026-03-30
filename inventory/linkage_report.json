@@ -1,0 +1,1851 @@
+{
+  "audio_summary": {
+    "total_records": 974,
+    "parse_errors": 10,
+    "by_source": {
+      "musica_numeris": 761,
+      "numerisation_cd": 16,
+      "numerisation_compact_cassette": 41,
+      "numerisation_dat": 109,
+      "numerisation_dvd": 37
+    },
+    "years_covered": [
+      1994,
+      1995,
+      1996,
+      1997,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2015,
+      2018
+    ],
+    "unique_dates": 259,
+    "records_per_year": {
+      "1994": 2,
+      "1995": 60,
+      "1996": 54,
+      "1997": 58,
+      "1998": 25,
+      "1999": 37,
+      "2000": 39,
+      "2001": 22,
+      "2002": 43,
+      "2003": 51,
+      "2004": 80,
+      "2005": 71,
+      "2006": 78,
+      "2007": 74,
+      "2008": 70,
+      "2009": 89,
+      "2010": 4,
+      "2011": 93,
+      "2012": 3,
+      "2013": 2,
+      "2015": 8,
+      "2018": 1
+    }
+  },
+  "score_summary": {
+    "total_editions": 601,
+    "unique_composers": 65,
+    "composers": [
+      "ALBENIZ",
+      "BACH",
+      "BARBER",
+      "BARTOK",
+      "BEETHOVEN",
+      "BERG",
+      "BERLIOZ",
+      "BERNSTEIN",
+      "BIZET",
+      "BRAHMS",
+      "BRUCH",
+      "BRUCKNER",
+      "CHAUSSON",
+      "CHOPIN",
+      "CHOSTAKOVITCH",
+      "CILEA",
+      "COPLAND",
+      "DEBUSSY",
+      "DVORAK",
+      "ELGAR",
+      "ENESCO",
+      "FAURE",
+      "FROST",
+      "GLAZOUNOV",
+      "GRIEG",
+      "HAENDEL",
+      "HAYDN",
+      "HERZOG",
+      "HILLBORG",
+      "HUMPERDINCK",
+      "KODALY",
+      "KONCZ",
+      "LISZT",
+      "LUTOSLAWSKI",
+      "MAHLER",
+      "MENDELSSOHN",
+      "MONN",
+      "MOZART",
+      "PIAZZOLLA",
+      "PLETNEV",
+      "POULENC",
+      "PROKOFIEV",
+      "PUCCINI",
+      "RACHMANINOV",
+      "RAVEL",
+      "RIMSKI-KORSAKOV",
+      "ROSSINI",
+      "SAINT-SAENS",
+      "SCHOENBERG",
+      "SCHUBERT",
+      "SCHUMANN",
+      "SHAW",
+      "SHCHEDRIN",
+      "SIBELIUS",
+      "STRAUSS",
+      "STRAUSS J. Sohn",
+      "STRAVINSKY",
+      "SZYMANOVSKI",
+      "TCHAIKOVSKI",
+      "VERDI",
+      "VIVALDI",
+      "WAGNER",
+      "WAXMAN",
+      "WEBER",
+      "YSAYE"
+    ],
+    "editions_with_year_tags": 171,
+    "editions_with_conductor_names": 82,
+    "editions_with_ensemble_refs": 171,
+    "conductor_annotations": 67,
+    "years_found_in_scores": [
+      2001,
+      2006,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2021,
+      2022
+    ],
+    "conductors_found": {
+      "Schiff": 12,
+      "Goebel": 11,
+      "Dutoit": 10,
+      "Makela": 8,
+      "Honeck": 6,
+      "Zukerman": 5,
+      "Noseda": 4,
+      "Harding": 3,
+      "Rattle": 3,
+      "Bell": 3,
+      "Shani": 3,
+      "Kavakos": 2,
+      "Nagano": 2,
+      "Pletnev": 2,
+      "Altinoglu": 2,
+      "Mehta": 1,
+      "Bychkov": 1,
+      "Bloomstedt": 1,
+      "Kochanovsky": 1,
+      "Gonzales": 1,
+      "Guzzo": 1
+    },
+    "ensembles_found": {
+      "VF": 70,
+      "GTN": 42,
+      "VFCO": 23,
+      "VFJO": 16,
+      "VFO": 12,
+      "OSR": 6,
+      "MET": 4,
+      "OCL": 1
+    }
+  },
+  "linkage_analysis": {
+    "audio_year_range": "1994–2018",
+    "score_year_range": "2001–2022",
+    "overlapping_years": [
+      2001,
+      2006,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2015,
+      2018
+    ],
+    "overlap_count": 9,
+    "scores_with_year_linked_to_audio_year": 73,
+    "scores_with_year_no_audio": 101,
+    "scores_without_any_year": 430,
+    "linkage_rate_with_year": "73/171 (42.7%)",
+    "overall_linkage_rate": "73/601 (12.1%)"
+  },
+  "best_effort_matches": [
+    {
+      "composer": "BACH",
+      "work": "BACH-Pno cto 1, BWV1052",
+      "edition": "BACH-Cto piano 1 BWV1052-2009",
+      "score_year": 2009,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 89,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 89 audio recordings exist from 2009."
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Pno cto 1, BWV1052",
+      "edition": "BACH-Cto piano BWV1052-2011",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Suite orch 3, BWV1068",
+      "edition": "BACH-Suite 3-VF2015 Koopman mat",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH_Passion selon Saint Mathieu BWV244",
+      "edition": "BACH-Passion selon Saint Mathieu-CA VF2015",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Chateau de Barbe bleue",
+      "edition": "BARTOK-Barbe bleue-VF 2015 Dutoit",
+      "score_year": 2015,
+      "conductors_in_score": [
+        "Dutoit"
+      ],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015. Conductor(s) Dutoit identified, which can be verified against programme data."
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Cto vln 2",
+      "edition": "BARTOK-Vln cto 2-CA VF2010",
+      "score_year": 2010,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 4,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 4 audio recordings exist from 2010."
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Divertimento",
+      "edition": "BARTOK-CA VF2013 GTN",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "GTN"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Pno cto 3",
+      "edition": "BARTOK-Cto pno 3-CA VF2015",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-4",
+      "edition": "BEETHOVEN-4-VF 2011",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-5",
+      "edition": "CA Rattle 2018",
+      "score_year": 2018,
+      "conductors_in_score": [
+        "Rattle"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018. Conductor(s) Rattle identified, which can be verified against programme data."
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-Pno cto 1, op15",
+      "edition": "BEETOVEN-CA VFCO 2018 Schiff",
+      "score_year": 2018,
+      "conductors_in_score": [
+        "Schiff"
+      ],
+      "ensembles_in_score": [
+        "VFCO"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018. Conductor(s) Schiff identified, which can be verified against programme data."
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-2",
+      "edition": "CA VF 2010",
+      "score_year": 2010,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 4,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 4 audio recordings exist from 2010."
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-2",
+      "edition": "CA VFJO 2015 Bychkov",
+      "score_year": 2015,
+      "conductors_in_score": [
+        "Bychkov"
+      ],
+      "ensembles_in_score": [
+        "VFJO"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015. Conductor(s) Bychkov identified, which can be verified against programme data."
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-FROST-Dances hongroises, arr. Frost",
+      "edition": "BRAHMS-FROST-Danse hongroise 1-VF 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-FROST-Dances hongroises, arr. Frost",
+      "edition": "BRAHMS-FROST-Danse hongroise 21-VF 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-Pno cto 2",
+      "edition": "BRAHMS-Pno cto 2-VF 2011",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-Serenade 1",
+      "edition": "BRAHMS-Serenade 1-CA VF 2015 Mc Creesh",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "BRUCH",
+      "work": "BRUCH-Cto vln 1",
+      "edition": "BRUCH-Vln cto 1-CA 2011 Zukermann",
+      "score_year": 2011,
+      "conductors_in_score": [
+        "Zukerman"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011. Conductor(s) Zukerman identified, which can be verified against programme data."
+    },
+    {
+      "composer": "BRUCH",
+      "work": "BRUCH-Cto vln 1",
+      "edition": "BRUCH-Vln cto 1-CA VF 2015 Joshua Bell",
+      "score_year": 2015,
+      "conductors_in_score": [
+        "Bell"
+      ],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015. Conductor(s) Bell identified, which can be verified against programme data."
+    },
+    {
+      "composer": "DEBUSSY",
+      "work": "DEBUSSY-Rhapsodie 1",
+      "edition": "CA VF 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "DVORAK",
+      "work": "DVORAK-Serenade, op.22",
+      "edition": "DVORAK-Serenade cordes-VF 2009",
+      "score_year": 2009,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 89,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 89 audio recordings exist from 2009."
+    },
+    {
+      "composer": "DVORAK",
+      "work": "DVORAK-Symphonie 8(4), Op.88",
+      "edition": "DVORAK-Symphonie 8-VF 2013 GTN mat",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF",
+        "GTN"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "DVORAK",
+      "work": "DVORAK-Symphonie 8(4), Op.88",
+      "edition": "DVORAK-Symphonie 8-VF 2015 Honeck mat",
+      "score_year": 2015,
+      "conductors_in_score": [
+        "Honeck"
+      ],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015. Conductor(s) Honeck identified, which can be verified against programme data."
+    },
+    {
+      "composer": "DVORAK",
+      "work": "DVORAK-Symphonie 9",
+      "edition": "DVORAK-9-VF CA2012",
+      "score_year": 2012,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 3,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 3 audio recordings exist from 2012."
+    },
+    {
+      "composer": "ENESCO",
+      "work": "ENESCO-Rhapsodie roumaine 1",
+      "edition": "CA VFO 2010 Dutoit",
+      "score_year": 2010,
+      "conductors_in_score": [
+        "Dutoit"
+      ],
+      "ensembles_in_score": [
+        "VFO"
+      ],
+      "audio_recordings_same_year": 4,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 4 audio recordings exist from 2010. Conductor(s) Dutoit identified, which can be verified against programme data."
+    },
+    {
+      "composer": "FAURE",
+      "work": "FAURE-Requiem version 1900, Nectoux-Leduc",
+      "edition": "CA VF2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "FROST",
+      "work": "FROST-Klezmer N°2",
+      "edition": "FROST-Klezmer dance 2-VF 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "FROST",
+      "work": "FROST-Klezmer N°2",
+      "edition": "FROST-Klezmer dance 2-VF 2015",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "FROST",
+      "work": "FROST-Klezmer N°3",
+      "edition": "FROST-Klezmer N°3-VF 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "FROST",
+      "work": "FROST-Klezmer N°3",
+      "edition": "FROST-Klezmer N°3-VF 2015",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "HAYDN",
+      "work": "HAYDN-104",
+      "edition": "GTN 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "GTN"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "KONCZ",
+      "work": "KONCZ-Verbier melange 2018",
+      "edition": "CA VF 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "MAHLER",
+      "work": "MAHLER-1",
+      "edition": "MAHLER-1-VF 2010",
+      "score_year": 2010,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 4,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 4 audio recordings exist from 2010."
+    },
+    {
+      "composer": "MENDELSSOHN",
+      "work": "MENDELSSOHN-Symphonie n°10",
+      "edition": "CA GTN 2011",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "GTN"
+      ],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    },
+    {
+      "composer": "MENDELSSOHN",
+      "work": "MENDELSSOHN-Symphonie n°5",
+      "edition": "MO46 CA Altinoglu VFJO 2018",
+      "score_year": 2018,
+      "conductors_in_score": [
+        "Altinoglu"
+      ],
+      "ensembles_in_score": [
+        "VFJO"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018. Conductor(s) Altinoglu identified, which can be verified against programme data."
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-2 pno cto, KV365",
+      "edition": "CA OCL 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "OCL"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Ave verum",
+      "edition": "MOZART_Ave verum-CA VFCO 2018 GTN",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VFCO",
+        "GTN"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Concerto violon n°3, KV216",
+      "edition": "MOZART-Vln cto KV216-VF 2011",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Don Giovanni",
+      "edition": "MOZART-Don Giovanni-VF2009 barenreiter",
+      "score_year": 2009,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 89,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 89 audio recordings exist from 2009."
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Symphonie concertante, KV364",
+      "edition": "CA A Schiff 2018",
+      "score_year": 2018,
+      "conductors_in_score": [
+        "Schiff"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018. Conductor(s) Schiff identified, which can be verified against programme data."
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Symphonie n°29, KV201 (186a)",
+      "edition": "CA VF2015",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Symphonie n°41",
+      "edition": "CA VF 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "PIAZZOLLA",
+      "work": "PIAZZOLLA-4 saisons-arrDesyatnikov",
+      "edition": "PIAZZOLLA-Saisons-VF 2010",
+      "score_year": 2010,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 4,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 4 audio recordings exist from 2010."
+    },
+    {
+      "composer": "PIAZZOLLA",
+      "work": "PIAZZOLLA-4 saisons-arrDesyatnikov",
+      "edition": "PIAZZOLLA-Saisons-VFCO 2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VFCO"
+      ],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "PLETNEV",
+      "work": "PLETNEV-Fantasia",
+      "edition": "CA Pletnev 2018",
+      "score_year": 2018,
+      "conductors_in_score": [
+        "Pletnev"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018. Conductor(s) Pletnev identified, which can be verified against programme data."
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-1",
+      "edition": "PROKOFIEV-1-CA VF 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-1",
+      "edition": "PROKOFIEV-1-CA VFJO2015",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-Amour 3 oranges",
+      "edition": "CA VF 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-Pno cto 3",
+      "edition": "CA VF 2015",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-Pno cto 3",
+      "edition": "CA VF 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-Pno cto 5",
+      "edition": "CA VF 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "RACHMANINOV",
+      "work": "RACHMANINOV-Concerto piano 2",
+      "edition": "RACHMANINOV-Symphonie 2 CA VFO 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VFO"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "RACHMANINOV",
+      "work": "RACHMANINOV-Pno cto 3",
+      "edition": "RACHMANINOV-Pno cto3-VF 2011",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    },
+    {
+      "composer": "RIMSKI-KORSAKOV",
+      "work": "RIMSKY-Sheherazade, op.35",
+      "edition": "CA Gergiev 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "SAINT-SAENS",
+      "work": "SAINT-SAENS-Introduction et Rondo Capricioso, op.28",
+      "edition": "CA Gergiev 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "SCHUMANN",
+      "work": "SCHUMANN-2",
+      "edition": "SCHUMANN-2-CA VF 2018",
+      "score_year": 2018,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 1,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 1 audio recordings exist from 2018."
+    },
+    {
+      "composer": "SCHUMANN",
+      "work": "SCHUMANN-3",
+      "edition": "SCHUMANN-3-CA VF2015 Salonen",
+      "score_year": 2015,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015."
+    },
+    {
+      "composer": "SCHUMANN",
+      "work": "SCHUMANN-3",
+      "edition": "SCHUMANN-3-CA probably VFO 2001 Sawallisch",
+      "score_year": 2001,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VFO"
+      ],
+      "audio_recordings_same_year": 22,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 22 audio recordings exist from 2001."
+    },
+    {
+      "composer": "SCHUMANN",
+      "work": "SCHUMANN-Cto pno, op54",
+      "edition": "SCHUMANN-Cto pno-CA VF2013 Levine",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "SHCHEDRIN",
+      "work": "SHCHEDRIN-BIZET-Carmen Suite",
+      "edition": "SHCHEDRIN-Carmen suite-CA VF 2011",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    },
+    {
+      "composer": "SHCHEDRIN",
+      "work": "SHCHEDRIN-BIZET-Carmen Suite",
+      "edition": "SHCHEDRIN_Carmen Suite-CA VF 2009",
+      "score_year": 2009,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 89,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 89 audio recordings exist from 2009."
+    },
+    {
+      "composer": "STRAUSS",
+      "work": "STRAUSS-Alpen symphony",
+      "edition": "STRAUSS-Alpen symphony-CA Dutoit VF2009",
+      "score_year": 2009,
+      "conductors_in_score": [
+        "Dutoit"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 89,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 89 audio recordings exist from 2009. Conductor(s) Dutoit identified, which can be verified against programme data."
+    },
+    {
+      "composer": "STRAVINSKY",
+      "work": "STRAVINSKY-Sacre",
+      "edition": "STRAVINSKY-Sacre-CA VFO2013 Harding",
+      "score_year": 2013,
+      "conductors_in_score": [
+        "Harding"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013. Conductor(s) Harding identified, which can be verified against programme data."
+    },
+    {
+      "composer": "TCHAIKOVSKI",
+      "work": "TCHAIKOVSKI-5",
+      "edition": "TCHAIKOVSKI-5-CA VF2012 Dutoit + VFJO2016",
+      "score_year": 2012,
+      "conductors_in_score": [
+        "Dutoit"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 3,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 3 audio recordings exist from 2012. Conductor(s) Dutoit identified, which can be verified against programme data."
+    },
+    {
+      "composer": "TCHAIKOVSKI",
+      "work": "TCHAIKOVSKI-Pno cto 1",
+      "edition": "TCHAIKOVSKI-Pno cto 1-CA 2009",
+      "score_year": 2009,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 89,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 89 audio recordings exist from 2009."
+    },
+    {
+      "composer": "VERDI",
+      "work": "VERDI-Luisa Miller",
+      "edition": "VERDI-Luisa Miller-VF 2015 Noseda-coupures",
+      "score_year": 2015,
+      "conductors_in_score": [
+        "Noseda"
+      ],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 8,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 8 audio recordings exist from 2015. Conductor(s) Noseda identified, which can be verified against programme data."
+    },
+    {
+      "composer": "VERDI",
+      "work": "VERDI-Requiem",
+      "edition": "VERDI-Requiem-Torino mat-VF2013 Noseda",
+      "score_year": 2013,
+      "conductors_in_score": [
+        "Noseda"
+      ],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium-high",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013. Conductor(s) Noseda identified, which can be verified against programme data."
+    },
+    {
+      "composer": "VERDI",
+      "work": "VERDI-Simon Boccanegra",
+      "edition": "VERDI-Simon Boccanegra-CA VFO 2006 Levine",
+      "score_year": 2006,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VFO"
+      ],
+      "audio_recordings_same_year": 78,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 78 audio recordings exist from 2006."
+    },
+    {
+      "composer": "VIVALDI",
+      "work": "VIVALDI-4 saisons",
+      "edition": "VIVALDI-4 Saisons-CAVF 2009-2012-2013",
+      "score_year": 2009,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 89,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 89 audio recordings exist from 2009."
+    },
+    {
+      "composer": "VIVALDI",
+      "work": "VIVALDI-4 saisons",
+      "edition": "VIVALDI-4 Saisons-CAVF 2009-2012-2013",
+      "score_year": 2012,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 3,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 3 audio recordings exist from 2012."
+    },
+    {
+      "composer": "VIVALDI",
+      "work": "VIVALDI-4 saisons",
+      "edition": "VIVALDI-4 Saisons-CAVF 2009-2012-2013",
+      "score_year": 2013,
+      "conductors_in_score": [],
+      "ensembles_in_score": [],
+      "audio_recordings_same_year": 2,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 2 audio recordings exist from 2013."
+    },
+    {
+      "composer": "WAGNER",
+      "work": "WAGNER-Walkyrie",
+      "edition": "WAGNER-Walkyrie-Adieux Wotan-VF 2012",
+      "score_year": 2012,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF"
+      ],
+      "audio_recordings_same_year": 3,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 3 audio recordings exist from 2012."
+    },
+    {
+      "composer": "WAXMAN",
+      "work": "WAXMAN-Carmen Fantaisie",
+      "edition": "WAXMAN-Carmen Fantaisie-CA VF 2011 GTN",
+      "score_year": 2011,
+      "conductors_in_score": [],
+      "ensembles_in_score": [
+        "VF",
+        "GTN"
+      ],
+      "audio_recordings_same_year": 93,
+      "match_confidence": "medium",
+      "note": "Year matches but specific concert date unknown without programme data. 93 audio recordings exist from 2011."
+    }
+  ],
+  "unmatched_scores_with_years": [
+    {
+      "composer": "BACH",
+      "work": "BACH-Brandebourgeois 1, BWV1046",
+      "edition": "BK1-Goebel mat 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Brandebourgeois 2, BWV1047",
+      "edition": "BK2-Goebel mat 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Brandebourgeois 3, BWV1048",
+      "edition": "BK3-Goebel mat 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Brandebourgeois 4, BWV1049",
+      "edition": "BK4-Goebel mat 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Brandebourgeois 5, BWV1050",
+      "edition": "BK5-Goebel mat 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Brandebourgeois 6, BWV1051",
+      "edition": "BK6-Goebel mat 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-PERGOLESE-Tilge Stabat",
+      "edition": "BACH-Psalm 51-MO202 CA VFCO 2022 Goebel",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BACH",
+      "work": "BACH-Pno cto 1, BWV1052",
+      "edition": "BACH-BWV1052-2016 A. Schiff",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Cto vln 2",
+      "edition": "BARTOK-Vln cto-CA VFO-Gergiev 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Danses roumaines",
+      "edition": "BARTOK-FROST-Romanian folk dances selection VF2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-FROST-Danses roumaines, arr. Frost",
+      "edition": "BARTOK-FROST-Romanian folk dances selection-VF 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Pno cto 1",
+      "edition": "CA VFCO2019 GTN",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Pno cto 2",
+      "edition": "BARTOK-PC2-CA VFO2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BARTOK",
+      "work": "BARTOK-Pno cto 3",
+      "edition": "CA VFCO2019 GTN",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-1",
+      "edition": "BEETHOVEN-1-strings Harding VFCO2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-1",
+      "edition": "CA VFCO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-2",
+      "edition": "BEETHOVEN-2-Zukerman VF2014",
+      "score_year": 2014,
+      "reason": "No audio recordings found for year 2014"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-7",
+      "edition": "CA VF2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-7",
+      "edition": "CA VFCO 2019 Kavakos",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-Pno cto 2, op19",
+      "edition": "BEETHOVEN-Pno cto 2-MO203 CA VFJO 2022 Nagano",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-Pno cto 3, op37",
+      "edition": "BEETHOVEN-Pno cto 3-MO77 CA VFO 2022 Noseda",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BEETHOVEN",
+      "work": "BEETHOVEN-Pno cto 4, op58",
+      "edition": "CA VFCO2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BIZET",
+      "work": "BIZET-Carmen",
+      "edition": "BIZET-Carmen-VF 2016",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-1",
+      "edition": "CA VF 2014",
+      "score_year": 2014,
+      "reason": "No audio recordings found for year 2014"
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-4 Ernste gesange",
+      "edition": "CA VFO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-FROST-Dances hongroises, arr. Frost",
+      "edition": "BRAHMS-FROST-Hungarian dance 1-VF 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-Ouv fete",
+      "edition": "CA OnL-VFJO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-Pno cto 1",
+      "edition": "BRAHMS-PC1-MO164 CA VF2022 Makela",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-Serenade 1",
+      "edition": "BRAHMS-Serenade 1-CA VF2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "BRAHMS",
+      "work": "BRAHMS-Vln cto",
+      "edition": "BRAHMS-Vln cto CA VF 2016",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "BRUCH",
+      "work": "BRUCH-Cto vln 1",
+      "edition": "BRUCH-Vl cto 1-CA VFCO2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "BRUCKNER",
+      "work": "BRUCKNER-Symphony 9",
+      "edition": "CA VFO Welser-Möst 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "CHAUSSON",
+      "work": "CHAUSSON-Poeme, op.25",
+      "edition": "CHAUSSON-Poeme-VFJO 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "CHOSTAKOVITCH",
+      "work": "CHOSTAKOVITCH-1",
+      "edition": "CHOSTAKOVITCH-1-CA VFO2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "CHOSTAKOVITCH",
+      "work": "CHOSTAKOVITCH-15",
+      "edition": "CHOSTAKOVITCH-15-CA VFO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "CHOSTAKOVITCH",
+      "work": "CHOSTAKOVITCH-4",
+      "edition": "CA VFO2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "CHOSTAKOVITCH",
+      "work": "CHOSTAKOVITCH-Concerto pour tpette & pno, op.35",
+      "edition": "CHOSTAKOVITCH-Pno cto 35-CA VFCO2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "CHOSTAKOVITCH",
+      "work": "CHOSTAKOVITCH-Ouverture de fete",
+      "edition": "CHOSTAKOVITCH-Ouv. de fete-CA ONL2016",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "DVORAK",
+      "work": "DVORAK-Vln cto, op.53",
+      "edition": "CA Bloomstedt VF2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "ELGAR",
+      "work": "ELGAR cello cto",
+      "edition": "ELGAR-Cello cto-CA VFCO2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "FROST",
+      "work": "FROST-Klezmer N°2",
+      "edition": "FROST-Klezmer dance 2-VF 2016 rev",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "HAYDN",
+      "work": "HAYDN-88",
+      "edition": "CA VF 2016",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "HAYDN",
+      "work": "HAYDN-Cello cto 1",
+      "edition": "CA VF 2016",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "HAYDN",
+      "work": "HAYDN-Cello cto 1",
+      "edition": "CA VFCO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "HILLBORG",
+      "work": "HILLBORG-Hymn of echoes",
+      "edition": "HILLBORG-Hymn of echoes-CA VFCO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "HUMPERDINCK",
+      "work": "HUMPERDINCK-Hansel & Gretel",
+      "edition": "HUMPERDINCK-H&G-MO199 CA VFJO 2022 Kochanovsky",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "KODALY",
+      "work": "KODALY-Hary Janos",
+      "edition": "KODALY-Hary Janos-CA VFO2022 Dutoit",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "LISZT",
+      "work": "LISZT-Pno cto 1",
+      "edition": "LISZT-Cto pno 1-CA VFJO 2017",
+      "score_year": 2017,
+      "reason": "No audio recordings found for year 2017"
+    },
+    {
+      "composer": "LISZT",
+      "work": "LISZT-Pno cto 1",
+      "edition": "MO27 CA VFCO 2022 Makela",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "LISZT",
+      "work": "LISZT-Pno cto 2",
+      "edition": "LISZT-Pno cto 2-MO172 CA VFJO 2022 Gonzales Monjas",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "MAHLER",
+      "work": "MAHLER-1",
+      "edition": "MAHLER-1-MO197 CA VFO 2022 Makela",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "MENDELSSOHN",
+      "work": "MENDELSSOHN-Concerto pour violon n°2, op.64",
+      "edition": "MENDELSSOHN-CA VFCO 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "MENDELSSOHN",
+      "work": "MENDELSSOHN-Symphonie n°5",
+      "edition": "MO46-CA VFJO 2022 Nagano",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-2 pno cto, KV365",
+      "edition": "CA VFCO2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Concerto clarinette, KV622",
+      "edition": "CA VFCO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Concerto piano n°27, KV595",
+      "edition": "MOZART-Pno cto 27-VFCO 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-La Flute enchantee",
+      "edition": "VF2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Requiem",
+      "edition": "MOZART-Requiem-MO133 CA VFCO 2022 Rattle",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Symphonie concertante, KV364",
+      "edition": "CA Pappano 2017",
+      "score_year": 2017,
+      "reason": "No audio recordings found for year 2017"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Symphonie n°29, KV201 (186a)",
+      "edition": "CA VF2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Symphonie n°31",
+      "edition": "CA VFCO 2019 Kavakos",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "MOZART",
+      "work": "MOZART-Symphonie n°40, KV550",
+      "edition": "CA VFCO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "POULENC",
+      "work": "POULENC-La Voix humaine",
+      "edition": "POULENC-La voix humaine-CA VFCO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-5",
+      "edition": "PROKOFIEV-5-CA VF 2016",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-5",
+      "edition": "PROKOFIEV-5-CA VF 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-Pno cto 3",
+      "edition": "PROKOFIEV-Pno cto 3-CA VF 2022 Dutoit",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-Romeo&Juliet",
+      "edition": "PROKOFIEV-R&J-montage Weilerstein VF 2017",
+      "score_year": 2017,
+      "reason": "No audio recordings found for year 2017"
+    },
+    {
+      "composer": "PROKOFIEV",
+      "work": "PROKOFIEV-Vln cto 2",
+      "edition": "CA Shani 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "PUCCINI",
+      "work": "PUCCINI-Boheme",
+      "edition": "PUCCINI-Boheme-CA VFJO 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "RACHMANINOV",
+      "work": "RACHMANINOV-Alexandre Newski",
+      "edition": "PROKOFIEV-Alexandre Newski-CA VF 2014",
+      "score_year": 2014,
+      "reason": "No audio recordings found for year 2014"
+    },
+    {
+      "composer": "RACHMANINOV",
+      "work": "RACHMANINOV-Pno cto 3",
+      "edition": "CA VFO2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "RACHMANINOV",
+      "work": "RACHMANINOV-Pno cto 3",
+      "edition": "RACHMANINOV-Pno cto 3-VF 2014",
+      "score_year": 2014,
+      "reason": "No audio recordings found for year 2014"
+    },
+    {
+      "composer": "RACHMANINOV",
+      "work": "RACHMANINOV-Rhapsodie sur un thème de Paganini, op.43",
+      "edition": "RACHMANINOV-Rhapsodie-CA VFJO 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "RACHMANINOV",
+      "work": "RACHMANINOV-Symphonie n°2",
+      "edition": "MO201 CA VFJO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "RAVEL",
+      "work": "RAVEL-Tombeau de Couperin",
+      "edition": "MO196-CA VFCO 2022 Makela",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "SAINT-SAENS",
+      "work": "SAINT-SAENS-Concerto pour piano n°2, op.22",
+      "edition": "SAINT-SAENS-Pno cto 2-VFCO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "SAINT-SAENS",
+      "work": "SAINT-SAENS-Concerto pour violoncelle n°1",
+      "edition": "SAINT-SAENS-Cello cto 1-CA VFCO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "SCHOENBERG",
+      "work": "SCHOENBERG-Nuit transfiguree op.4",
+      "edition": "SCHOENBERG-Nuit transfiguree-CA VF 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "SCHOENBERG",
+      "work": "SCHOENBERG-Pno cto op.42",
+      "edition": "SCHOENBERG-Pno cto-CA VF 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "SCHOENBERG",
+      "work": "SCHOENBERG-Vln cto op.36",
+      "edition": "SCHOENBERG-Vln cto-CA VF 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "SCHUBERT",
+      "work": "SCHUBERT-Rosamunde, overture",
+      "edition": "CA VFO2019 Honeck",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "SCHUBERT",
+      "work": "SCHUBERT-Symphonie n°5, D485",
+      "edition": "CA VFCO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "SCHUMANN",
+      "work": "SCHUMANN-1",
+      "edition": "CA OnL-VFJO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "SCHUMANN",
+      "work": "SCHUMANN-Cto pno, op54",
+      "edition": "SCHUMANN-Cto pno-MO206 CA VFCO2022 Rattle",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "SHCHEDRIN",
+      "work": "SHCHEDRIN-Beethovens testament",
+      "edition": "SHCHEDRIN-Beethoven testament-CA VFO2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "SHCHEDRIN",
+      "work": "SHCHEDRIN-Cto dolce",
+      "edition": "CA VFCO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "SHCHEDRIN",
+      "work": "SHCHEDRIN-Cto orch 1",
+      "edition": "SHCHEDRIN-Cto orch 1-CA VF 2021",
+      "score_year": 2021,
+      "reason": "No audio recordings found for year 2021"
+    },
+    {
+      "composer": "SHCHEDRIN",
+      "work": "SHCHEDRIN-Dialogues with Chostakovitch",
+      "edition": "CA VFO2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "SHCHEDRIN",
+      "work": "SHCHEDRIN-Pno cto 2",
+      "edition": "SHCHEDRIN-Pno cto 2-CA VFO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "SIBELIUS",
+      "work": "SIBELIUS-Vln cto",
+      "edition": "CA VFJO 2014 Honeck",
+      "score_year": 2014,
+      "reason": "No audio recordings found for year 2014"
+    },
+    {
+      "composer": "STRAUSS",
+      "work": "STRAUSS-Frau",
+      "edition": "cut 2019 Gergiev",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "STRAVINSKY",
+      "work": "STRAVINSKY-Sacre",
+      "edition": "STRAVINSKY-Sacre-CA VFO 2022 Dutoit",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "TCHAIKOVSKI",
+      "work": "TCHAIKOVSKI-5",
+      "edition": "TCHAIKOVSKI-5-CA Eschenbach VFJO 2022 Eschenbach",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "TCHAIKOVSKI",
+      "work": "TCHAIKOVSKI-5",
+      "edition": "TCHAIKOVSKI-5-CA VF2012 Dutoit + VFJO2016",
+      "score_year": 2016,
+      "reason": "No audio recordings found for year 2016"
+    },
+    {
+      "composer": "TCHAIKOVSKI",
+      "work": "TCHAIKOVSKI-Pno cto 1",
+      "edition": "TCHAIKOVSKI-Pno cto1-CA VF 2014",
+      "score_year": 2014,
+      "reason": "No audio recordings found for year 2014"
+    },
+    {
+      "composer": "TCHAIKOVSKI",
+      "work": "TCHAIKOVSKI-Variations rococo",
+      "edition": "TCHAIKOVSKI-Variations rococo-ca onl-VFJO 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    },
+    {
+      "composer": "VERDI",
+      "work": "VERDI-Ballo",
+      "edition": "2022 production",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "VERDI",
+      "work": "VERDI-Ballo",
+      "edition": "VERDI-Ballo-CA-Noseda 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "VIVALDI",
+      "work": "VIVALDI-Clarinet concerto, arr. Tarkmann",
+      "edition": "VIVALDI-Cl concerto 3-CA VFCO 2022 Goebel",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "WEBER",
+      "work": "WEBER-Cl cto 1",
+      "edition": "WEBER-Cl cto 1-CA VFCO 2022",
+      "score_year": 2022,
+      "reason": "No audio recordings found for year 2022"
+    },
+    {
+      "composer": "WEBER",
+      "work": "WEBER-Oberon-Ouv",
+      "edition": "CA Shani 2019",
+      "score_year": 2019,
+      "reason": "No audio recordings found for year 2019"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Verbier Festival — An immersive browser-based installation for exploring classical performances through audio-driven visualizations and gestural re-orchestration.">
+  <title>Verbier Festival</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎼</text></svg>">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Splash Screen — Immersive Musical Canvas -->
+    <div id="splash-screen">
+      <!-- Full-screen animated canvas background -->
+      <canvas id="splash-canvas"></canvas>
+
+      <!-- Content overlay -->
+      <div class="splash-content">
+        <div class="splash-logo-container">
+          <img src="/v_logo_transparent.png" alt="Verbier Festival" class="splash-logo">
+        </div>
+        <div class="splash-tagline">
+          <span class="tagline-dash"></span>
+          <span class="tagline-text">Navigate a breathing landscape of classical performances</span>
+          <span class="tagline-dash"></span>
+        </div>
+        <button class="splash-enter" id="enter-button">
+          <span class="enter-ring"></span>
+          <span class="enter-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </span>
+          <span class="enter-text">Begin the Journey</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Three.js Landscape (Part 1) -->
+    <div id="canvas-container"></div>
+
+    <!-- Part 1: Breathing Verbier Landscape UI -->
+    <div id="landscape-ui" class="hidden">
+      <div class="landscape-header">
+        <h1>Breathing Verbier <span class="badge">Demo</span></h1>
+        <p>Interactive Panorama: Drag to rotate. Scroll to zoom. Click an orb to select.</p>
+      </div>
+      
+      <!-- Interactive Tooltip for hovered pieces -->
+      <div id="landscape-tooltip" class="hidden" style="position: absolute; pointer-events: none; background: rgba(0,0,0,0.8); color: white; padding: 12px 18px; border-radius: 8px; backdrop-filter: blur(8px); transform: translate(-50%, -100%); margin-top: -20px; text-align: center; border: 1px solid rgba(255,255,255,0.2); z-index: 1000; transition: opacity 0.2s ease;">
+          <div id="tooltip-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 4px;"></div>
+          <div id="tooltip-composer" style="font-family: 'Inter', sans-serif; font-size: 0.85rem; opacity: 0.8;"></div>
+          <div id="tooltip-metadata" style="font-family: 'Inter', sans-serif; font-size: 0.75rem; opacity: 0.6; margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 6px;"></div>
+      </div>
+    </div>
+
+    <!-- Time Machine Overlay -->
+    <div id="time-machine" class="hidden">
+      <div class="time-machine-header">Festival Archives</div>
+      <div class="time-machine-track-container">
+        <div class="time-machine-track" id="time-machine-track">
+          <!-- Years will be injected dynamically -->
+        </div>
+        <!-- Center indicator line -->
+        <div class="time-machine-indicator"></div>
+      </div>
+      <div class="time-machine-hint">Scroll to travel through time</div>
+    </div>
+
+    <!-- Re-Orchestrate Mode (Part 2) -->
+    <div id="re-orchestrate-container">
+      <div class="video-layer" id="video-layer"></div>
+      <canvas class="overlay-canvas" id="overlay-canvas"></canvas>
+      <div class="webcam-preview" id="webcam-preview" style="display:none;">
+        <video id="webcam-video" autoplay playsinline muted></video>
+      </div>
+
+      <!-- Performance Info -->
+      <div class="performance-info" id="performance-info">
+        <div class="composer-name" id="info-composer"></div>
+        <div class="piece-title" id="info-title"></div>
+      </div>
+
+      <!-- VU Meters -->
+      <div class="vu-meters" id="vu-meters"></div>
+
+      <!-- Waveform Timeline -->
+      <div class="waveform-timeline" id="waveform-timeline">
+        <div class="progress" id="timeline-progress"></div>
+      </div>
+
+      <!-- Fallback Mixer (when no webcam) -->
+      <div class="fallback-mixer" id="fallback-mixer" style="display:none;"></div>
+    </div>
+
+    <!-- Back Button -->
+    <button class="back-button" id="back-button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      Return to Landscape
+    </button>
+
+    <!-- Tutorial Overlay -->
+    <div class="tutorial-overlay hidden" id="tutorial-overlay">
+      <div class="tutorial-content">
+        <h2>Become the Conductor</h2>
+        <p>Use your hands to control the performance.</p>
+        <div class="gesture-hint">
+          <span class="icon">🖐️</span>
+          <span>Raise your hands to begin. Left hand controls low instruments, right hand controls high
+            instruments.</span>
+        </div>
+        <div class="gesture-hint">
+          <span class="icon">↕️</span>
+          <span>Hand height controls volume — raise to amplify, lower to quiet.</span>
+        </div>
+        <div class="gesture-hint">
+          <span class="icon">✊</span>
+          <span>Close your fist to mute. Open your palm to unmute.</span>
+        </div>
+        <div class="gesture-hint">
+          <span class="icon">↔️</span>
+          <span>Spread your hands apart to widen the stereo field.</span>
+        </div>
+        <p
+          style="margin-top: 24px; font-size: 0.8rem; color: rgba(232,234,246,0.35); letter-spacing: 0.1em; text-transform: uppercase;">
+          Click anywhere to begin</p>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading-overlay">
+      <div class="loading-spinner"></div>
+      <div class="loading-text" id="loading-text">Loading performance...</div>
+      <div class="loading-progress">
+        <div class="bar" id="loading-bar" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
