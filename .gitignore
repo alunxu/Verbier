@@ -46,6 +46,18 @@ inventory/logs/
 # Build caches
 .vite/
 
+# LaTeX build outputs
+final-report/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
 # Local assistant/cache and generated presentation exports
 .claude/
 rewrite_outlook*.sh
