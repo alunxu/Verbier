@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "check": "node --check src/main.js && node --check src/splash-canvas.js && node --check src/music-lens/lens-app.js && node --check src/music-lens/lens-engine.js && node --check src/music-lens/lens-gesture-mapper.js && node --check src/music-lens/lens-hand-tracker.js && node --check src/music-lens/lens-overlay-renderer.js",
     "build": "vite build",
     "preview": "vite preview"
   },

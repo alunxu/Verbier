@@ -14,9 +14,15 @@
     rel="stylesheet">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎼</text></svg>">
+  <link rel="stylesheet" href="/page-location.css">
 </head>
 
 <body>
+  <div class="page-location">
+    <span class="loc-current">Verbier Festival</span>
+    <span class="loc-sep">·</span>
+    <span>Welcome</span>
+  </div>
   <div id="app">
     <!-- Splash Screen — Immersive Musical Canvas -->
     <div id="splash-screen">
@@ -24,6 +30,7 @@
       <canvas id="splash-canvas"></canvas>
 
       <!-- Content overlay -->
+      <div class="audio-hint" id="audio-hint">Click anywhere to awake the soundscape</div>
       <div class="splash-content">
         <div class="splash-logo-container">
           <img src="/v_logo_transparent.png" alt="Verbier Festival" class="splash-logo">

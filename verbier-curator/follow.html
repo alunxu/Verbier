@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow the Conductor — Verbier Festival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  rel="stylesheet">
+<link rel="icon" type="image/svg+xml"
+  href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎼</text></svg>">
+<link rel="stylesheet" href="/page-location.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .follow-stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* Layer 1 — concert performance video, full-bleed, dimmed.
+     Gives a sense that the score is being followed during a real concert. */
+  #follow-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    filter: brightness(0.55) saturate(1.2) blur(4px);
+    z-index: 1;
+    transform: scale(1.04);  /* hide blur edges */
+  }
+
+  /* Layer 2 — score animation.
+     Source frame is 1920×1080 with the orchestral score filling the full
+     1080px height and a black pillarbox on left/right. With `contain` in
+     a taller viewport this faithful padding shows up as an empty band
+     below the score — so we use `cover` to scale until the score fills
+     the viewport vertically. The wasted side pillarboxes get cropped
+     (which is the correct behaviour) and the full sheet stays in view.
+     `mix-blend-mode: screen` then turns every pure-black pixel transparent
+     so the concert behind bleeds through wherever the score isn't drawn. */
+  #follow-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 2;
+    mix-blend-mode: screen;
+    filter: brightness(0.82) contrast(1.22) saturate(1.18)
+            drop-shadow(0 0 28px rgba(140, 190, 255, 0.35));
+    animation: score-breathe 6.5s ease-in-out infinite;
+  }
+  @keyframes score-breathe {
+    0%, 100% { opacity: 0.94; }
+    50%      { opacity: 0.78; }
+  }
+
+  /* Soft vignette to keep the corners from feeling empty once the black
+     borders are blended out — the score "fades into" the surrounding scene. */
+  .follow-stage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    background: radial-gradient(ellipse at center,
+      transparent 55%,
+      rgba(0, 0, 0, 0.35) 85%,
+      rgba(0, 0, 0, 0.6) 100%);
+    mix-blend-mode: multiply;
+  }
+
+  /* Subtle top-corner UI — fades out after a few seconds of playback,
+     re-appears on mouse move */
+  .follow-ui {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 600ms ease;
+  }
+  .follow-ui.fading { opacity: 0; }
+  .follow-ui > * { pointer-events: auto; }
+
+  .follow-eyebrow {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(168, 216, 255, 0.85);
+    text-shadow: 0 0 16px rgba(100, 180, 255, 0.6), 0 1px 4px rgba(0,0,0,0.7);
+  }
+
+  .follow-back {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px 8px 10px;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    background: rgba(8, 8, 16, 0.5);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .follow-back:hover {
+    color: white;
+    border-color: rgba(168, 216, 255, 0.7);
+    background: rgba(15, 25, 60, 0.7);
+  }
+
+  /* Floating play / pause hint when video is paused */
+  .follow-play-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  .follow-play-hint.hidden { display: none; }
+  .follow-play-hint .play-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 2px solid rgba(168, 216, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(168, 216, 255, 0.15);
+    box-shadow: 0 0 60px rgba(100, 180, 255, 0.5);
+    color: #a8d8ff;
+    transition: transform 0.2s;
+  }
+  .follow-play-hint:hover .play-circle { transform: scale(1.08); }
+  .follow-play-hint .play-circle::after {
+    content: '';
+    width: 0; height: 0;
+    border-left: 22px solid currentColor;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    margin-left: 6px;
+  }
+  .follow-play-hint .play-label {
+    position: absolute;
+    bottom: 28%;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="follow-stage">
+  <!-- Atmospheric concert backdrop. Best-guess: the Prototype score is for
+       Don Giovanni Overture (matches "Ouvertura Andante" on the score). -->
+  <video id="follow-bg-video" muted playsinline preload="auto" loop autoplay>
+    <source src="/lens-media/Mozart/VIDEO_AUDIO/Mozart_Video.mp4" type="video/mp4">
+  </video>
+
+  <video id="follow-video" muted playsinline preload="auto" loop>
+    <source src="/follow-video/Prototype_.mp4" type="video/mp4">
+  </video>
+
+  <div class="follow-ui" id="follow-ui">
+    <a class="follow-back" href="/choose.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      Back
+    </a>
+    <div class="page-location">
+      <span>Verbier Festival</span>
+      <span class="loc-sep">·</span>
+      <span class="loc-current">Follow the Conductor</span>
+    </div>
+  </div>
+
+  <div class="follow-play-hint" id="play-hint">
+    <div class="play-circle"></div>
+    <div class="play-label">Click to begin</div>
+  </div>
+</div>
+
+<script>
+  const video = document.getElementById('follow-video');
+  const bgVideo = document.getElementById('follow-bg-video');
+  const ui = document.getElementById('follow-ui');
+  const playHint = document.getElementById('play-hint');
+
+  const tryAutoplay = async () => {
+    try {
+      await Promise.all([video.play(), bgVideo.play()]);
+      playHint.classList.add('hidden');
+    } catch {
+      // user gesture required → keep hint
+    }
+  };
+
+  // Unmute the score video on first click (concert backdrop stays muted)
+  playHint.addEventListener('click', async () => {
+    video.muted = false;
+    try {
+      await Promise.all([video.play(), bgVideo.play()]);
+    } catch {}
+    playHint.classList.add('hidden');
+  });
+
+  // Toggle pause on video click (after first start)
+  video.addEventListener('click', () => {
+    if (video.paused) video.play();
+    else video.pause();
+  });
+
+  // Auto-fade UI after a few seconds of idle; revive on mouse-move
+  let fadeTimer;
+  const armFade = () => {
+    ui.classList.remove('fading');
+    clearTimeout(fadeTimer);
+    fadeTimer = setTimeout(() => ui.classList.add('fading'), 3500);
+  };
+  document.addEventListener('mousemove', armFade);
+  document.addEventListener('keydown', armFade);
+  armFade();
+
+  tryAutoplay();
+</script>
+
+</body>
+</html>

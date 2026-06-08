@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Lens · How it works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  rel="stylesheet">
+<link rel="icon" type="image/svg+xml"
+  href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎼</text></svg>">
+<link rel="stylesheet" href="/src/music-lens/lens-styles.css">
+<link rel="stylesheet" href="/page-location.css">
+<style>
+  body { overflow: auto; }
+  #app { height: auto; min-height: 100vh; }
+  .doc {
+    max-width: 920px;
+    margin: 60px auto;
+    padding: 0 32px 80px;
+  }
+  .doc-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .doc h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 2.8rem;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .doc h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    margin: 48px 0 16px;
+    color: var(--accent-cool);
+  }
+  .doc h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin: 24px 0 8px;
+    color: var(--text-primary);
+  }
+  .doc p, .doc li {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.98rem;
+  }
+  .doc p { margin-bottom: 14px; }
+  .doc ul, .doc ol { margin: 0 0 18px 24px; }
+  .doc li { margin-bottom: 6px; }
+  .doc strong, .doc b { color: var(--text-primary); font-weight: 500; }
+  .doc em { color: var(--accent-cool); font-style: italic; }
+  .doc table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 28px;
+    font-size: 0.92rem;
+  }
+  .doc th, .doc td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .doc th { color: var(--accent); font-weight: 500; font-size: 0.8rem;
+            letter-spacing: 0.1em; text-transform: uppercase; }
+  .doc td { color: var(--text-secondary); }
+  .doc td:first-child { color: var(--text-primary); font-weight: 500; width: 30%; }
+  .doc-nav {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .doc-nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.15s ease;
+  }
+  .doc-nav a:hover { color: var(--text-primary); border-color: var(--accent); }
+  .doc-nav a.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .doc-nav a.primary:hover { background: #8a8efa; }
+  .callout {
+    background: rgba(123, 128, 247, 0.08);
+    border-left: 3px solid var(--accent);
+    padding: 14px 20px;
+    margin: 16px 0;
+    border-radius: 4px;
+  }
+  .callout p { color: var(--text-primary); margin: 0; }
+  .callout.warn {
+    background: rgba(247, 139, 123, 0.08);
+    border-left-color: var(--accent-warm);
+  }
+  .gesture-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 18px 0 28px;
+  }
+  .gesture-block .gb {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .gb h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .gb.left h4 { color: #7eb6ff; }
+  .gb.right h4 { color: #ff8c5a; }
+  .gb dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; }
+  .gb dt { color: var(--text-muted); font-size: 0.85rem; padding-top: 1px; }
+  .gb dd { color: var(--text-primary); font-size: 0.9rem; margin: 0; }
+</style>
+</head>
+<body>
+<div class="page-location">
+  <span>Verbier Festival</span>
+  <span class="loc-sep">·</span>
+  <span class="loc-section">Become the Conductor</span>
+  <span class="loc-sep">·</span>
+  <span class="loc-current">Documentation</span>
+</div>
+
+<div id="app" style="overflow: visible;">
+  <div class="doc">
+
+    <div class="doc-eyebrow">Music Lens · Documentation</div>
+    <h1>Conduct an archive — <em>how it works</em>.</h1>
+
+    <div class="doc-nav">
+      <a href="/lens-app.html" class="primary">↩ Back to the app</a>
+      <a href="#design">Design</a>
+      <a href="#gestures">Gestures</a>
+      <a href="#presets">Presets</a>
+      <a href="#audio">Audio engine</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+    </div>
+
+    <p>Music Lens turns Verbier Festival recordings into <em>real-time
+    re-orchestrations</em> driven by your hands. Unlike traditional remix
+    tools, it does not split the recording into instrument tracks —
+    classical orchestral source separation from a stereo mixdown remains
+    technically limited. Instead, the lens applies a small, carefully chosen
+    chain of audio effects to the original mix and lets you reshape its
+    character, space, and dynamics through gesture.</p>
+
+    <h2 id="design">Why a "lens", not stems</h2>
+
+    <p>Verbier recordings come as <em>stereo mixdowns of live performances</em>
+    — main microphone pair plus room mics. In that form, individual orchestral
+    voices are physically entangled: timpani and low strings overlap in time,
+    frequency, and stereo image. Even state-of-the-art separators trained on
+    pop music produce only rough, leaky stems on classical recordings.</p>
+
+    <p>The lens design takes the opposite stance: <strong>treat the mix as
+    sacred, then sculpt it</strong>. With a focused chain of effects (3-band
+    EQ, stereo width, reverb, compressor, harmonic/percussive balance,
+    master gain), you can dramatically reshape the listening experience
+    without ever pretending to "extract" what isn't recoverable from a
+    stereo recording.</p>
+
+    <h2 id="gestures">Gesture vocabulary</h2>
+
+    <p>The conductor metaphor: <strong>your left hand shapes the sound</strong>,
+    <strong>your right hand shapes the space</strong>, <strong>both
+    hands together</strong> control the overall feel.</p>
+
+    <div class="gesture-block">
+      <div class="gb left">
+        <h4>Left hand · shape</h4>
+        <dl>
+          <dt>Height ↕</dt><dd>High-frequency brightness (–12 to +12 dB)</dd>
+          <dt>Side-to-side ↔</dt><dd>Mid-range presence</dd>
+          <dt>Make a fist</dt><dd>Bass boost (low EQ kicks in)</dd>
+        </dl>
+      </div>
+      <div class="gb right">
+        <h4>Right hand · space</h4>
+        <dl>
+          <dt>Height ↕</dt><dd>Reverb wet — close ↔ cathedral</dd>
+          <dt>Side-to-side ↔</dt><dd>Stereo width — narrow ↔ wide</dd>
+          <dt>Make a fist</dt><dd>Strip the attacks (harmonic-only mix)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3>Both hands</h3>
+    <ul>
+      <li><strong>Average height</strong>: master volume — raise both hands together
+        for a crescendo, lower for diminuendo.</li>
+      <li><strong>Distance between hands</strong>: compressor amount — pulled apart
+        increases dynamic compression.</li>
+    </ul>
+
+    <div class="callout">
+      <p>The mapping is symmetric: when you stop moving, the engine smoothly
+      glides parameters back toward neutral so brief detection dropouts
+      don't disrupt the sound.</p>
+    </div>
+
+    <h2 id="presets">Mood presets</h2>
+
+    <p>Four presets snap the entire chain to a recognizable character. Pick
+    one to start, then refine with your hands or sliders.</p>
+
+    <table>
+      <tr><th>Preset</th><th>Character</th></tr>
+      <tr><td>Original</td><td>Untouched mix — the recording as it was made</td></tr>
+      <tr><td>Concert Hall</td><td>Spacious reverb, mild stereo widening, gentle compression</td></tr>
+      <tr><td>Cinematic</td><td>Bass-forward, heavy reverb, strong dynamics</td></tr>
+      <tr><td>Intimate</td><td>Narrow stereo, dry, mid-range focused — chamber-music feel</td></tr>
+    </table>
+
+    <h2 id="audio">Audio engine</h2>
+
+    <p>The runtime engine is built on the Web Audio API, a graph of native
+    nodes. There is no JavaScript DSP loop and no model inference at runtime.</p>
+
+    <table>
+      <tr><th>Effect</th><th>Implementation</th></tr>
+      <tr><td>3-band EQ</td><td>3 × <code>BiquadFilter</code> (low-shelf, peaking, high-shelf)</td></tr>
+      <tr><td>Stereo width</td><td>M/S processing via <code>ChannelSplitter</code> + 4 cross-coefficient gains</td></tr>
+      <tr><td>Reverb</td><td><code>Convolver</code> with synthesized decaying-noise IR</td></tr>
+      <tr><td>HPSS mix</td><td>Pre-computed harmonic / percussive WAVs blended at runtime</td></tr>
+      <tr><td>Compressor</td><td><code>DynamicsCompressor</code></td></tr>
+      <tr><td>Master</td><td><code>GainNode</code></td></tr>
+    </table>
+
+    <h3>The HPSS knob</h3>
+    <p>Each piece is pre-processed with harmonic / percussive source
+    separation (HPSS) — a classic algorithm that splits a recording into
+    "sustained pitched content" and "transient attacks". At runtime, three
+    audio sources play in sync: the original mix, the harmonic stem, and
+    the percussive stem. The HPSS knob smoothly crossfades between them:</p>
+    <ul>
+      <li><strong>Center (0.5)</strong>: only the original mix plays — pristine</li>
+      <li><strong>Toward 1.0</strong>: fade out mix, fade in harmonic — smoother, less attack</li>
+      <li><strong>Toward 0.0</strong>: fade out mix, fade in percussive — rhythmic skeleton</li>
+    </ul>
+
+    <h2 id="troubleshooting">Troubleshooting</h2>
+
+    <h3>The sound seems unaffected by my hands</h3>
+    <ul>
+      <li>Check the parameter HUD in the top-right of the demo — the values should change as you move.</li>
+      <li>If you've been adjusting sliders, gesture control pauses for 2 seconds after the last slider movement.</li>
+      <li>Try the <strong>Sliders</strong> button in the toolbar to see if effects work without gestures.</li>
+    </ul>
+
+    <h3>Camera was denied or unavailable</h3>
+    <p>The app falls back to slider-only mode automatically. All eight effects
+    are accessible via on-screen sliders, and presets work the same.</p>
+
+    <h3>Audio sounds glitchy or has clicks</h3>
+    <ul>
+      <li>The engine smooths every parameter change with a 20ms ramp, but extreme
+        reverb / compressor settings combined with low system performance can
+        introduce artifacts.</li>
+      <li>Try the <strong>Original</strong> preset to confirm clean playback baseline.</li>
+      <li>Closing other tabs and using a dedicated audio output (not Bluetooth) helps.</li>
+    </ul>
+
+    <h3>Playback drifts away from the video</h3>
+    <p>The demo uses audio as the master clock and re-syncs the video every
+    250ms. A drift larger than 0.4s triggers a hard re-seek; smaller drifts
+    are corrected by tiny playback-rate adjustments.</p>
+
+    <div class="callout warn">
+      <p><strong>Privacy:</strong> the camera feed is processed entirely in
+      your browser via MediaPipe Hands. No video frames are ever sent over
+      the network.</p>
+    </div>
+
+    <div class="doc-nav" style="margin-top: 60px;">
+      <a href="/lens-app.html" class="primary">↩ Back to the app</a>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

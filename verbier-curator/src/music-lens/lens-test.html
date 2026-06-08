@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Music Lens — Test Bench</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#1a1a1a; color:#eee;
+         margin:0; padding:24px; }
+  h1 { margin: 0 0 8px; }
+  .sub { color:#888; margin-bottom:24px; }
+  .pieces { display:flex; gap:8px; margin-bottom:16px; }
+  .pieces button { padding:10px 20px; border:1px solid #444; background:#2a2a2a;
+                   color:#eee; border-radius:6px; cursor:pointer; font-size:14px; }
+  .pieces button.active { background:#4a4ad8; border-color:#6a6aff; }
+  .pieces button:disabled { opacity:0.4; cursor:wait; }
+
+  .transport { display:flex; gap:12px; align-items:center; margin-bottom:24px; }
+  .transport button { padding:8px 18px; }
+  .time { font-family: monospace; color:#aaa; }
+  progress { flex:1; height:8px; }
+
+  .presets { display:flex; gap:6px; margin-bottom:20px; flex-wrap:wrap; }
+  .presets button { padding:6px 14px; background:#333; border:1px solid #555;
+                    color:#eee; border-radius:4px; cursor:pointer; font-size:13px; }
+  .presets button:hover { background:#444; }
+
+  .controls { display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; }
+  .ctl { background:#222; padding:14px 18px; border-radius:8px; border:1px solid #333; }
+  .ctl label { display:flex; justify-content:space-between; font-size:13px;
+               margin-bottom:6px; color:#aaa; }
+  .ctl label span { color:#fff; font-family:monospace; }
+  .ctl input[type=range] { width:100%; }
+
+  .vu { height:6px; background:#111; border-radius:3px; overflow:hidden; margin-top:14px; }
+  .vu-fill { height:100%; background:linear-gradient(90deg,#4a4,#fa4,#f44);
+             width:0%; transition:width 0.05s linear; }
+
+  .status { margin-top:16px; padding:10px; background:#0a0a0a; border-radius:4px;
+            color:#888; font-size:12px; font-family:monospace; }
+</style>
+</head>
+<body>
+
+<h1>🎼 Music Lens — Test Bench</h1>
+<div class="sub">Real-time effect chain over Verbier recordings. No source separation at runtime.</div>
+
+<div class="pieces" id="pieces">
+  <button data-piece="Mozart">Mozart · Don Giovanni Overture</button>
+  <button data-piece="Haydn">Haydn · Die Schöpfung Nr. 28</button>
+  <button data-piece="Beethoven">Beethoven · excerpt</button>
+</div>
+
+<div class="transport">
+  <button id="play">▶ Play</button>
+  <button id="pause">⏸ Pause</button>
+  <progress id="prog" value="0" max="1"></progress>
+  <span class="time" id="time">0:00 / 0:00</span>
+</div>
+
+<div class="presets">
+  <button data-preset="Original">Original</button>
+  <button data-preset="ConcertHall">Concert Hall</button>
+  <button data-preset="Cinematic">Cinematic</button>
+  <button data-preset="Intimate">Intimate</button>
+</div>
+
+<div class="controls">
+  <div class="ctl">
+    <label>Low EQ <span id="v-low">0.0 dB</span></label>
+    <input type="range" id="r-low" min="-12" max="12" step="0.1" value="0">
+  </div>
+  <div class="ctl">
+    <label>Mid EQ <span id="v-mid">0.0 dB</span></label>
+    <input type="range" id="r-mid" min="-12" max="12" step="0.1" value="0">
+  </div>
+  <div class="ctl">
+    <label>High EQ <span id="v-high">0.0 dB</span></label>
+    <input type="range" id="r-high" min="-12" max="12" step="0.1" value="0">
+  </div>
+  <div class="ctl">
+    <label>Reverb wet <span id="v-rev">0%</span></label>
+    <input type="range" id="r-rev" min="0" max="100" step="1" value="0">
+  </div>
+  <div class="ctl">
+    <label>Stereo Width <span id="v-wid">1.0</span></label>
+    <input type="range" id="r-wid" min="0" max="2" step="0.01" value="1">
+  </div>
+  <div class="ctl">
+    <label>HPSS Mix (P ← → H) <span id="v-hpss">0.50</span></label>
+    <input type="range" id="r-hpss" min="0" max="1" step="0.01" value="0.5">
+  </div>
+  <div class="ctl">
+    <label>Compressor amount <span id="v-cmp">0%</span></label>
+    <input type="range" id="r-cmp" min="0" max="100" step="1" value="0">
+  </div>
+  <div class="ctl">
+    <label>Master Volume <span id="v-mst">85%</span></label>
+    <input type="range" id="r-mst" min="0" max="150" step="1" value="85">
+  </div>
+</div>
+
+<div class="vu"><div class="vu-fill" id="vuFill"></div></div>
+
+<div class="status" id="status">No piece loaded.</div>
+
+<script type="module">
+import { MusicLensEngine } from './lens-engine.js';
+
+const engine = new MusicLensEngine();
+let currentPiece = null;
+let manifest = null;
+
+const $ = id => document.getElementById(id);
+const setStatus = msg => $('status').textContent = msg;
+
+// Helper for slider hookup
+function hookup(id, valueId, fn, fmt) {
+  const slider = $(id);
+  const valueEl = $(valueId);
+  const update = () => {
+    const v = parseFloat(slider.value);
+    fn(v);
+    valueEl.textContent = fmt(v);
+  };
+  slider.addEventListener('input', update);
+  return { slider, set: v => { slider.value = v; update(); } };
+}
+
+await engine.init();
+
+const ctlLow  = hookup('r-low',  'v-low',  v => engine.setEqLow(v),    v => v.toFixed(1) + ' dB');
+const ctlMid  = hookup('r-mid',  'v-mid',  v => engine.setEqMid(v),    v => v.toFixed(1) + ' dB');
+const ctlHigh = hookup('r-high', 'v-high', v => engine.setEqHigh(v),   v => v.toFixed(1) + ' dB');
+const ctlRev  = hookup('r-rev',  'v-rev',  v => engine.setReverbWet(v/100), v => v + '%');
+const ctlWid  = hookup('r-wid',  'v-wid',  v => engine.setStereoWidth(v),   v => v.toFixed(2));
+const ctlHpss = hookup('r-hpss', 'v-hpss', v => engine.setHpssMix(v),       v => v.toFixed(2));
+const ctlCmp  = hookup('r-cmp',  'v-cmp',  v => engine.setCompressor(v/100), v => v + '%');
+const ctlMst  = hookup('r-mst',  'v-mst',  v => engine.setMasterGain(v/100), v => v + '%');
+
+// Piece selection
+document.querySelectorAll('#pieces button').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const piece = btn.dataset.piece;
+    document.querySelectorAll('#pieces button').forEach(b => {
+      b.classList.toggle('active', b === btn);
+      b.disabled = true;
+    });
+    setStatus(`Loading ${piece}...`);
+    engine.stop();
+    try {
+      const baseUrl = `/lens-assets/${piece}`;
+      const res = await fetch(`${baseUrl}/manifest.json`);
+      manifest = await res.json();
+      const t0 = performance.now();
+      const info = await engine.loadPiece(manifest, baseUrl);
+      const dt = ((performance.now() - t0) / 1000).toFixed(1);
+      currentPiece = piece;
+      setStatus(`Loaded ${manifest.piece} — ${info.duration.toFixed(1)}s @ ${info.sampleRate}Hz · decode took ${dt}s`);
+    } catch (e) {
+      setStatus(`Error: ${e.message}`);
+      console.error(e);
+    } finally {
+      document.querySelectorAll('#pieces button').forEach(b => b.disabled = false);
+    }
+  });
+});
+
+// Transport
+$('play').addEventListener('click', () => {
+  if (!manifest) { setStatus('Pick a piece first.'); return; }
+  engine.play(0);
+  setStatus(`Playing ${currentPiece}…`);
+});
+$('pause').addEventListener('click', () => engine.pause());
+
+// Presets
+document.querySelectorAll('.presets button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.dataset.preset;
+    engine.applyPreset(name);
+    // Sync UI sliders to the preset values
+    setTimeout(() => {
+      ctlLow.set(engine.eqLow.gain.value);
+      ctlMid.set(engine.eqMid.gain.value);
+      ctlHigh.set(engine.eqHigh.gain.value);
+      // (other params follow exponential ramp; UI value reads after settle)
+    }, 50);
+  });
+});
+
+// VU + progress loop
+function tick() {
+  if (engine.isPlaying && engine.duration > 0) {
+    const t = engine.getCurrentTime();
+    const d = engine.duration;
+    $('prog').value = t / d;
+    const fmtT = s => `${Math.floor(s/60)}:${('0'+Math.floor(s%60)).slice(-2)}`;
+    $('time').textContent = `${fmtT(t)} / ${fmtT(d)}`;
+  }
+  $('vuFill').style.width = Math.min(100, engine.getMasterRms() * 200) + '%';
+  requestAnimationFrame(tick);
+}
+tick();
+
+setStatus('Engine ready. Pick a piece.');
+</script>
+</body>
+</html>

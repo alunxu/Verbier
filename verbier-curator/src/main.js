@@ -22,8 +22,13 @@ const state = {
     currentMode: 'splash', // 'splash' | 'landscape' | 'reorchestrate'
     selectedPerformance: null,
     performances: [],
-    isTransitioning: false
+    isTransitioning: false,
+    ambientAudio: new Audio('/assets/audio/ambient_bg.mp3') // Will play after interaction
 };
+
+// Setup ambient audio
+state.ambientAudio.loop = true;
+state.ambientAudio.volume = 0; // Starts at 0 to fade in
 
 // ============================================================
 // Initialization
@@ -57,6 +62,27 @@ async function init() {
         state.performances = generateDemoPerformances();
     }
 
+    // Set up ambient audio interaction
+    const audioHint = document.getElementById('audio-hint');
+    const playAmbient = () => {
+        if (state.ambientAudio.paused && state.currentMode !== 'reorchestrate') {
+            state.ambientAudio.play().catch(e => console.warn("Audio play blocked", e));
+            // Fade in over 2 seconds
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                vol += 0.05;
+                if (vol >= 0.8) {
+                    clearInterval(fadeIn);
+                    state.ambientAudio.volume = 0.8;
+                } else {
+                    state.ambientAudio.volume = vol;
+                }
+            }, 100);
+            if (audioHint) audioHint.classList.add('hidden');
+        }
+    };
+    document.body.addEventListener('click', playAmbient, { once: true });
+
     // Set up splash screen
     const enterButton = document.getElementById('enter-button');
     const splashScreen = document.getElementById('splash-screen');
@@ -64,20 +90,13 @@ async function init() {
     // Start splash canvas animation
     initSplashCanvas();
 
-    enterButton.addEventListener('click', async () => {
-        // Create AudioContext on user gesture (required by browsers)
-        state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-        // Stop splash canvas animation
+    enterButton.addEventListener('click', () => {
+        // "Begin the Journey" leads to the role-choice page:
+        //   • Become the Conductor → Music Lens (gestural reorchestration)
+        //   • Follow the Conductor → score-synchronised animation (TBD)
         destroySplashCanvas();
-
-        // Fade out splash
         splashScreen.classList.add('hidden');
-
-        // Start Part 1
-        setTimeout(() => {
-            enterLandscapeMode();
-        }, 500);
+        setTimeout(() => { window.location.href = '/choose.html'; }, 350);
     });
 
     // Back button
@@ -144,6 +163,21 @@ async function handlePerformanceSelect(performance) {
 async function enterReOrchestrateMode(performance) {
     state.currentMode = 'reorchestrate';
     console.log('Entering Re-Orchestrate mode');
+
+    // Fade out ambient background music
+    if (!state.ambientAudio.paused) {
+        let vol = state.ambientAudio.volume;
+        const fadeOut = setInterval(() => {
+            vol -= 0.05;
+            if (vol <= 0) {
+                clearInterval(fadeOut);
+                state.ambientAudio.pause();
+                state.ambientAudio.volume = 0;
+            } else {
+                state.ambientAudio.volume = vol;
+            }
+        }, 100);
+    }
 
     const container = document.getElementById('re-orchestrate-container');
     container.classList.add('active');

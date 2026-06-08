@@ -1,0 +1,42 @@
+/* ============================================================
+   Shared breadcrumb indicator — anchored top-center on every page
+   so the user always knows where they are in the journey.
+   ============================================================ */
+
+.page-location {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  user-select: none;
+}
+.page-location .loc-sep {
+  margin: 0 10px;
+  opacity: 0.45;
+}
+.page-location .loc-current {
+  color: rgba(255, 255, 255, 0.92);
+}
+.page-location .loc-section {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Narrow viewport: reduce tracking so the line still fits */
+@media (max-width: 700px) {
+  .page-location {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+  }
+  .page-location .loc-sep { margin: 0 6px; }
+}

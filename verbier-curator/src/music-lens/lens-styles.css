@@ -1,0 +1,855 @@
+/* ==========================================================
+   lens-styles.css — Music Lens app styling
+   ========================================================== */
+
+:root {
+  --bg-deep: #0a0a14;
+  --bg-elevated: #14141e;
+  --bg-card: #1a1a26;
+  --border: #2a2a3a;
+  --text-primary: #e8eaf6;
+  --text-secondary: #9b9eb6;
+  --text-muted: #6b6e84;
+  --accent: #7b80f7;
+  --accent-warm: #f78b7b;
+  --accent-cool: #7bd5f7;
+  --good: #6dc580;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* ============================================================
+   Top-level layout: each "screen" full-bleed, only one shown
+   ============================================================ */
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Global "← Back" — small chip top-left, visible on welcome & picker only */
+.global-back {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 100;
+  display: none;     /* shown via .visible class */
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 8px 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: rgba(8, 8, 16, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.global-back.visible { display: inline-flex; }
+.global-back:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: rgba(15, 25, 60, 0.7);
+}
+.global-back svg { display: block; }
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.screen.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* ============================================================
+   Welcome / Instructions screen
+   ============================================================ */
+
+#screen-welcome {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 60px;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(123, 128, 247, 0.15), transparent 50%),
+    radial-gradient(circle at 75% 70%, rgba(247, 139, 123, 0.10), transparent 50%),
+    var(--bg-deep);
+}
+.welcome-inner {
+  max-width: 880px;
+  width: 100%;
+  text-align: center;
+}
+.welcome-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.welcome-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5vw, 4.0rem);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.welcome-title em {
+  font-style: italic;
+  color: var(--accent-cool);
+}
+.welcome-tagline {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 48px;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gesture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 48px;
+  text-align: left;
+}
+.gesture-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 22px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gesture-card .hand {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.gesture-card.left .hand { color: #7eb6ff; }
+.gesture-card.right .hand { color: #ff8c5a; }
+.gesture-card.both .hand { color: var(--good); }
+.gesture-card .controls {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+.gesture-card .controls span { color: var(--text-secondary); }
+
+.welcome-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+.welcome-actions button {
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  transition: transform 0.1s ease, background 0.1s ease;
+}
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  font-weight: 500;
+}
+.btn-primary:hover { background: #8a8efa; transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { color: var(--text-primary); border-color: var(--accent); }
+
+/* ============================================================
+   Piece picker
+   ============================================================ */
+
+#screen-picker {
+  flex-direction: column;
+  padding: 40px 0 30px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+}
+
+/* Slow cross-fading slideshow of festival photos behind the picker */
+.picker-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.picker-bg-slide {
+  position: absolute;
+  inset: -20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.05);
+  filter: saturate(1.0) brightness(0.78);    /* brighter so the photo is clearly visible */
+  transition: opacity 1800ms ease-in-out, transform 9000ms ease-in-out;
+  will-change: opacity, transform;
+}
+.picker-bg-slide.active {
+  opacity: 1;
+  transform: scale(1.10);
+}
+.picker-bg-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 0%, rgba(5, 10, 24, 0.15) 60%, rgba(5, 10, 24, 0.6) 100%),
+    linear-gradient(to bottom, rgba(5, 10, 24, 0.35) 0%, transparent 35%, transparent 65%, rgba(5, 10, 24, 0.55) 100%);
+}
+/* Ensure picker children sit above background */
+.picker-header,
+.piece-rail,
+.picker-scroll-hint { position: relative; z-index: 2; }
+.picker-header {
+  text-align: center;
+  margin-bottom: 36px;
+  padding: 0 60px;
+}
+.picker-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+.picker-header p { color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
+
+/* Horizontal scrolling rail */
+.piece-rail {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 60px 36px;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 60px;
+  scrollbar-width: thin;
+}
+.piece-rail::-webkit-scrollbar { height: 6px; }
+.piece-rail::-webkit-scrollbar-track { background: transparent; }
+.piece-rail::-webkit-scrollbar-thumb {
+  background: rgba(124, 108, 240, 0.3);
+  border-radius: 3px;
+}
+.piece-rail::-webkit-scrollbar-thumb:hover { background: rgba(124, 108, 240, 0.5); }
+
+.picker-scroll-hint {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Each piece card: hero on top, text below */
+.piece-card {
+  flex: 0 0 280px;
+  height: 380px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  position: relative;
+}
+.piece-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+}
+
+.piece-card .hero {
+  height: 60%;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+.piece-card .hero video,
+.piece-card .hero .gradient-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.piece-card .hero video {
+  /* unmirrored — these are concert recordings, not selfie cam */
+  filter: saturate(1.1) brightness(0.85);
+}
+.piece-card .gradient-poster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: -0.02em;
+}
+.piece-card .photo-poster {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(1.1) brightness(0.78);
+  transition: transform 0.6s ease;
+}
+.piece-card:hover .photo-poster { transform: scale(1.05); }
+.piece-card .hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 60%,
+    rgba(15, 25, 60, 0.25) 80%,
+    var(--bg-card) 100%);
+  pointer-events: none;
+}
+
+.piece-card .meta {
+  padding: 16px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.piece-card .composer {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent-cool);
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+.piece-card .title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: 400;
+  flex: 1;
+}
+.piece-card .footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+}
+.piece-card .footer .duration {
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   Loading
+   ============================================================ */
+
+#screen-loading {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.loading-spinner {
+  width: 40px; height: 40px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-progress {
+  width: 320px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loading-progress .bar {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+#loading-text { color: var(--text-secondary); font-size: 0.95rem; }
+
+/* ============================================================
+   Tutorial (step-by-step gesture introduction)
+   ============================================================ */
+
+#screen-tutorial {
+  background: black;
+  align-items: center;
+  justify-content: center;
+}
+.tutorial-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* concert video — NOT mirrored (this is the real performance, not selfie) */
+  opacity: 0.65;
+  filter: brightness(0.8);
+}
+/* Fallback bg for audio-only pieces (no video file): subtle gradient
+   derived from the piece's posterTone, set inline by JS. */
+.tutorial-bg-fallback {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-deep);
+}
+.tutorial-overlay-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.tutorial-card {
+  position: relative;
+  z-index: 5;
+  margin: auto;
+  background: rgba(8, 8, 16, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  padding: 36px 48px;
+  border-radius: 18px;
+  width: min(560px, 92vw);
+  text-align: center;
+  align-self: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.tutorial-progress {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+.tutorial-progress .tut-divider { color: var(--text-muted); margin: 0 4px; }
+#tut-step-num { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+.tutorial-emoji {
+  font-size: 3.2rem;
+  margin-bottom: 8px;
+  line-height: 1.0;
+}
+.tutorial-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.9rem;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.tutorial-instruction {
+  color: var(--text-secondary);
+  font-size: 1.0rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.tutorial-listen-hint {
+  color: var(--accent-cool);
+  font-size: 0.85rem;
+  font-style: italic;
+  min-height: 22px;
+  margin-bottom: 18px;
+  opacity: 0.9;
+}
+.tutorial-meter {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 auto 22px;
+  width: 80%;
+}
+.tut-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.15s ease;
+}
+.tutorial-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.tutorial-actions button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Demo (main interactive view)
+   ============================================================ */
+
+#screen-demo {
+  position: absolute;
+  inset: 0;
+  background: black;
+}
+#video-host {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#video-host video {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+#overlay-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.webcam-mini { display: none; }   /* replaced by full-screen #ghost-canvas */
+
+/* Ghost overlay: segmented webcam person composited onto the video.
+   Lives at #app root so it's visible across both tutorial AND demo screens. */
+#ghost-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: screen;     /* lifts the video where the person is */
+  z-index: 6;                  /* over screens' bg/video, under cards/HUD */
+  display: none;
+}
+#ghost-canvas.shown { display: block; }
+
+.demo-header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(8, 8, 16, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.demo-header .composer {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent-cool);
+  font-size: 0.95rem;
+}
+.demo-header .title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+}
+
+.demo-toolbar {
+  position: absolute;
+  top: 20px;
+  right: 240px;  /* leave room for HUD */
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+.demo-toolbar button {
+  background: rgba(8, 8, 16, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.demo-toolbar button.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.demo-toolbar button:hover { color: var(--text-primary); }
+
+.demo-presets {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  background: rgba(8, 8, 16, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+.demo-presets button {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.demo-presets button:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.05);
+}
+.demo-presets button.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Live gesture-driven operation feedback (chip stack on the left) */
+.gesture-feedback {
+  position: absolute;
+  top: 110px;
+  left: 20px;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  max-width: 280px;
+}
+.gesture-chip {
+  background: rgba(8, 8, 16, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  padding: 7px 14px;
+  border-radius: 22px;
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  animation: gchip-in 0.28s ease-out;
+}
+.gesture-chip.exit { animation: gchip-out 0.3s ease-out forwards; }
+.gesture-chip .ch-icon { font-size: 1rem; line-height: 1; }
+.gesture-chip .ch-value {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+}
+@keyframes gchip-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes gchip-out {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-12px); }
+}
+.gesture-chip.cat-low      { border-left-color: #f5a623; }
+.gesture-chip.cat-mid      { border-left-color: #f06c9b; }
+.gesture-chip.cat-high     { border-left-color: #7bd5f7; }
+.gesture-chip.cat-reverb   { border-left-color: #7c6cf0; }
+.gesture-chip.cat-width    { border-left-color: #4ecdc4; }
+.gesture-chip.cat-hpss     { border-left-color: #f5a623; }
+.gesture-chip.cat-comp     { border-left-color: #f06c9b; }
+.gesture-chip.cat-master   { border-left-color: #6dc580; }
+
+/* Real-time waveform visualizer (pre vs post effects) */
+.demo-visualizer {
+  position: absolute;
+  bottom: 70px;          /* sits above the "← Choose another piece" button */
+  right: 20px;
+  z-index: 9;
+  width: 260px;
+  background: rgba(8, 8, 16, 0.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px 4px;
+  pointer-events: none;
+}
+.vis-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.vis-legend-pre, .vis-legend-post {
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.vis-legend-pre  { background: rgba(94, 215, 245, 1.0); }    /* cyan — original */
+.vis-legend-post { background: rgba(255, 140, 90, 1.0); }    /* coral — reorchestrated */
+.vis-canvas {
+  display: block;
+  width: 100%;
+  height: 60px;
+  border-radius: 4px;
+}
+
+.demo-bottom-bar {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.demo-bottom-bar button {
+  padding: 10px 16px;
+  background: rgba(8, 8, 16, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.demo-bottom-bar button:hover { border-color: var(--accent); }
+
+.no-camera-banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(20, 0, 0, 0.8);
+  border: 1px solid #642;
+  padding: 24px 32px;
+  border-radius: 12px;
+  z-index: 100;
+  max-width: 460px;
+  text-align: center;
+}
+.no-camera-banner h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--accent-warm);
+  margin-bottom: 12px;
+}
+.no-camera-banner p { color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px; }
+
+/* ============================================================
+   Slider control panel (fallback if no camera, or always-on)
+   ============================================================ */
+
+.slider-panel {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  background: rgba(8, 8, 16, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  border-radius: 12px;
+  width: min(900px, 90vw);
+}
+.slider-panel.hidden { display: none; }
+.slider-panel .ctl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.slider-panel .ctl label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+.slider-panel .ctl input[type=range] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  outline: none;
+}
+.slider-panel .ctl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ============================================================
+   Toast / status pill
+   ============================================================ */
+
+.toast {
+  position: absolute;
+  bottom: 90px;
+  left: 20px;
+  background: rgba(8, 8, 16, 0.85);
+  border: 1px solid var(--border);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.toast.visible { opacity: 1; }

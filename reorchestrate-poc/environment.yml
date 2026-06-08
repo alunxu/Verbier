@@ -1,0 +1,45 @@
+name: verbier-reorch
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.12
+  - pip
+
+  # Audio / MIR
+  - librosa=0.11.*
+  - soundfile=0.13.*
+  - ffmpeg               # needed by librosa for mp3 I/O
+
+  # Numerics
+  - numpy=1.26.*
+  - scipy>=1.11
+  - matplotlib>=3.9
+
+  # MIDI / score
+  - pretty_midi=0.2.*
+  - music21>=9.1
+
+  # PyTorch (MPS on Apple Silicon; conda-forge ships an arm64 build)
+  - pytorch>=2.4
+
+  # pip-only packages
+  - pip:
+      - demucs==4.0.1    # Meta FAIR hybrid-transformer source separator
+
+# Notes
+# -----
+# * Environment is intended to be installed LOCALLY, not on the NAS.
+#   NAS-hosted conda envs are 10–100× slower for Python startup because
+#   Python's import system is metadata-heavy (many small files).
+#
+# * Create with:
+#     conda env create -f environment.yml
+#     conda activate verbier-reorch
+#
+# * First Demucs run will download the model weights (~52 MB) to
+#   ~/.cache/torch/hub/checkpoints/ — this is a one-time operation.
+#
+# * All separation runs offline after that: no audio ever leaves the
+#   machine. NDA-safe.

@@ -145,6 +145,32 @@ body {
   text-shadow: 0 4px 15px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255,255,255,1);
 }
 
+.audio-hint {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  pointer-events: none;
+  animation: slow-pulse 3s infinite ease-in-out;
+  transition: opacity 1s ease;
+}
+
+.audio-hint.hidden {
+  opacity: 0;
+}
+
+@keyframes slow-pulse {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.9; transform: translateX(-50%) scale(1.05); }
+}
+
 .splash-logo-container {
   display: flex;
   justify-content: center;
@@ -275,6 +301,47 @@ body {
   transform: scale(1.06);
   box-shadow: 0 0 40px rgba(240, 108, 155, 0.6),
     inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Secondary entry — subtle text link below the main CTA */
+.splash-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 8px 18px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: 1px solid rgba(124, 108, 240, 0.25);
+  border-radius: var(--radius-full);
+  background: rgba(15, 25, 60, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  animation: fadein-up 1.2s ease-out 2.6s forwards;
+  transition: color var(--transition-fast),
+              border-color var(--transition-fast),
+              transform var(--transition-fast),
+              background var(--transition-fast);
+}
+.splash-secondary:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(124, 108, 240, 0.55);
+  background: rgba(15, 25, 60, 0.7);
+  transform: translateY(-1px);
+}
+.splash-secondary-icon { font-size: 1.05rem; line-height: 1; }
+.splash-secondary-arrow {
+  color: var(--color-accent-primary);
+  font-weight: 500;
+  transition: transform var(--transition-fast);
+}
+.splash-secondary:hover .splash-secondary-arrow {
+  transform: translateX(3px);
 }
 
 .enter-ring {

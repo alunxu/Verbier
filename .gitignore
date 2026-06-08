@@ -17,9 +17,16 @@ dist-ssr/
 
 # Data, Logs, Audio/Video Assets exclusions
 # Since we work with huge high-fidelity datasets, we'll exclude them entirely.
+media/
+verbier-curator/public/lens-assets
+verbier-curator/public/lens-media
 verbier-curator/public/assets/audio/
 verbier-curator/public/assets/stems/
 verbier-curator/public/assets/video/
+reorchestrate-poc/lens-assets/
+reorchestrate-poc/stems/
+reorchestrate-poc/output/
+reorchestrate-poc/plots/
 *.wav
 *.ogg
 *.mp3
@@ -34,9 +41,17 @@ __pycache__/
 
 # Scraped HTML cache (large, regenerable)
 inventory/programme_data/raw_html/
+inventory/logs/
 
 # Build caches
 .vite/
+
+# Local assistant/cache and generated presentation exports
+.claude/
+rewrite_outlook*.sh
+*.pptx.html
+*.pptx_files/
+*_files/
 
 # Env
 .env

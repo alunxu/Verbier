@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Lens — Verbier Festival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+  rel="stylesheet">
+<link rel="icon" type="image/svg+xml"
+  href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎼</text></svg>">
+<link rel="stylesheet" href="/src/music-lens/lens-styles.css">
+<link rel="stylesheet" href="/page-location.css">
+</head>
+<body>
+<div class="page-location" id="page-location">
+  <span>Verbier Festival</span>
+  <span class="loc-sep">·</span>
+  <span class="loc-section">Become the Conductor</span>
+  <span class="loc-sep">·</span>
+  <span class="loc-current" id="loc-current">Welcome</span>
+</div>
+
+<div id="app">
+
+  <!-- Global back link — visible on welcome & picker screens, jumps back to
+       the role-choice page (and thence to splash). Hidden on tutorial/demo
+       where their own controls handle navigation. -->
+  <a class="global-back" id="global-back" href="/choose.html" aria-label="Back to choices">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    Back
+  </a>
+
+  <!-- Selfie ghost overlay (shared across tutorial + demo) — segmented
+       person from webcam, blended over the performance video. -->
+  <canvas id="ghost-canvas"></canvas>
+
+  <!-- ═══════════════════ Welcome / Instructions ═══════════════════ -->
+  <div class="screen active" id="screen-welcome">
+    <div class="welcome-inner">
+      <div class="welcome-eyebrow">Verbier Festival · Music Lens</div>
+      <h1 class="welcome-title">Conduct an <em>archive</em>.</h1>
+      <p class="welcome-tagline">
+        Real-time gestural reorchestration of Verbier Festival recordings.
+        Use your hands like a conductor — left shapes the sound,
+        right shapes the space.
+      </p>
+
+      <div class="gesture-grid">
+        <div class="gesture-card left">
+          <div class="hand">▲ Left hand · shape</div>
+          <div class="controls">
+            <span>Height ↕</span> · High-frequency brightness<br/>
+            <span>Side-to-side ↔</span> · Mid-range presence<br/>
+            <span>Make a fist ✊</span> · Bass boost
+          </div>
+        </div>
+        <div class="gesture-card right">
+          <div class="hand">▲ Right hand · space</div>
+          <div class="controls">
+            <span>Height ↕</span> · Reverb · close ↔ cathedral<br/>
+            <span>Side-to-side ↔</span> · Stereo width<br/>
+            <span>Make a fist ✊</span> · Strip the attacks (smooth)
+          </div>
+        </div>
+        <div class="gesture-card both">
+          <div class="hand">▲ Both hands together</div>
+          <div class="controls">
+            <span>Average height</span> · Master volume (crescendo)<br/>
+            <span>Hand spread</span> · Compressor (push/pull dynamics)
+          </div>
+        </div>
+        <div class="gesture-card">
+          <div class="hand" style="color: var(--text-secondary);">⚙ Without a camera</div>
+          <div class="controls">
+            All eight effects also have on-screen sliders, and four mood
+            <span>presets</span> let you jump to a flavor instantly.
+          </div>
+        </div>
+      </div>
+
+      <div class="welcome-actions">
+        <button class="btn-primary" id="btn-begin">Begin →</button>
+        <button class="btn-secondary" id="btn-quick-start">Skip tutorial</button>
+        <a href="/lens-instructions.html" class="btn-secondary"
+           style="text-decoration:none; display:inline-flex; align-items:center;">
+           Read documentation
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ Piece Picker (horizontal rail) ═══════════════════ -->
+  <div class="screen" id="screen-picker">
+    <div class="picker-header">
+      <h2>Choose a recording</h2>
+      <p>Verbier Festival pieces, pre-processed for real-time effects. Scroll horizontally; hover a card to preview.</p>
+    </div>
+    <div class="piece-rail" id="piece-rail">
+      <!-- Cards injected at runtime so we can build hero posters / video previews from PIECE_META -->
+    </div>
+    <div class="picker-scroll-hint">←  scroll  →</div>
+  </div>
+
+  <!-- ═══════════════════ Loading ═══════════════════ -->
+  <div class="screen" id="screen-loading">
+    <div class="loading-spinner"></div>
+    <div id="loading-text">Loading audio buffers…</div>
+    <div class="loading-progress"><div class="bar" id="loading-bar"></div></div>
+  </div>
+
+  <!-- ═══════════════════ Tutorial (step-by-step) ═══════════════════ -->
+  <div class="screen" id="screen-tutorial">
+    <!-- Performance video as background — same recording the user just picked,
+         so the tutorial feels like rehearsing in front of the actual concert. -->
+    <video class="tutorial-video-bg" id="tutorial-bg-video" muted playsinline loop></video>
+    <div class="tutorial-bg-fallback" id="tutorial-bg-fallback"></div>
+    <canvas class="tutorial-overlay-canvas" id="tutorial-overlay-canvas"></canvas>
+
+    <div class="tutorial-card" id="tutorial-card">
+      <div class="tutorial-progress">
+        <span id="tut-step-num">1</span> <span class="tut-divider">/</span> <span id="tut-total">8</span>
+      </div>
+      <div class="tutorial-emoji" id="tut-emoji">🎼</div>
+      <h2 class="tutorial-title" id="tut-title">Loading…</h2>
+      <p class="tutorial-instruction" id="tut-instruction">Preparing tutorial</p>
+      <div class="tutorial-listen-hint" id="tut-listen-hint"></div>
+
+      <div class="tutorial-meter" id="tut-meter">
+        <div class="tut-meter-fill" id="tut-meter-fill"></div>
+      </div>
+
+      <div class="tutorial-actions">
+        <button class="btn-secondary" id="tut-back">← Back</button>
+        <button class="btn-primary" id="tut-next">Next →</button>
+        <button class="btn-secondary" id="tut-skip-all">Skip tutorial</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ Demo (main view) ═══════════════════ -->
+  <div class="screen" id="screen-demo">
+    <div id="video-host">
+      <video id="performance-video" muted playsinline></video>
+    </div>
+
+    <canvas id="overlay-canvas"></canvas>
+
+    <!-- Webcam source — kept for MediaPipe ingestion but hidden from view -->
+    <video id="webcam-video" autoplay playsinline muted style="display:none;"></video>
+
+    <div class="demo-header">
+      <div class="composer" id="demo-composer">—</div>
+      <div class="title" id="demo-title">—</div>
+    </div>
+
+    <!-- Live gesture-driven operation feedback (multiple chips can stack) -->
+    <div class="gesture-feedback" id="gesture-feedback"></div>
+
+    <div class="demo-toolbar">
+      <button id="btn-toggle-sliders">Sliders</button>
+      <button id="btn-toggle-overlay" class="active">Overlay</button>
+      <button id="btn-pause">⏸ Pause</button>
+    </div>
+
+    <div class="demo-presets">
+      <button data-preset="Original" class="active">Original</button>
+      <button data-preset="ConcertHall">Concert Hall</button>
+      <button data-preset="Cinematic">Cinematic</button>
+      <button data-preset="Intimate">Intimate</button>
+    </div>
+
+    <div class="slider-panel hidden" id="slider-panel">
+      <div class="ctl"><label>Low EQ <span id="v-low">0 dB</span></label>
+        <input type="range" id="r-low" min="-24" max="24" step="0.1" value="0"></div>
+      <div class="ctl"><label>Mid EQ <span id="v-mid">0 dB</span></label>
+        <input type="range" id="r-mid" min="-24" max="24" step="0.1" value="0"></div>
+      <div class="ctl"><label>High EQ <span id="v-high">0 dB</span></label>
+        <input type="range" id="r-high" min="-24" max="24" step="0.1" value="0"></div>
+      <div class="ctl"><label>Reverb <span id="v-rev">0%</span></label>
+        <input type="range" id="r-rev" min="0" max="100" step="1" value="0"></div>
+      <div class="ctl"><label>Width <span id="v-wid">1.0</span></label>
+        <input type="range" id="r-wid" min="0" max="3" step="0.01" value="1"></div>
+      <div class="ctl"><label>HPSS Mix <span id="v-hpss">0.50</span></label>
+        <input type="range" id="r-hpss" min="0" max="1" step="0.01" value="0.5"></div>
+      <div class="ctl"><label>Compress <span id="v-cmp">0%</span></label>
+        <input type="range" id="r-cmp" min="0" max="100" step="1" value="0"></div>
+      <div class="ctl"><label>Master <span id="v-mst">85%</span></label>
+        <input type="range" id="r-mst" min="0" max="150" step="1" value="85"></div>
+    </div>
+
+    <div class="demo-visualizer">
+      <div class="vis-legend">
+        <span class="vis-legend-pre"></span> original
+        <span class="vis-legend-post"></span> reorchestrated
+      </div>
+      <canvas class="vis-canvas" id="vis-canvas"></canvas>
+    </div>
+
+    <div class="demo-bottom-bar">
+      <button id="btn-back">← Choose another piece</button>
+    </div>
+
+    <div class="no-camera-banner" id="no-camera-banner" style="display:none">
+      <h3>No camera, no problem</h3>
+      <p>Webcam access was declined or unavailable. You can still control the
+         eight effects with the on-screen sliders below.</p>
+      <button class="btn-primary" id="btn-camera-dismiss">Continue with sliders</button>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+</div>
+
+<script type="module" src="/src/music-lens/lens-app.js"></script>
+</body>
+</html>
