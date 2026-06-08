@@ -224,6 +224,81 @@ The main development loop is usually:
 4. Treat `verbier-curator/src/legacy/` as design history unless you are
    intentionally reviving an older prototype.
 
+## Media And NAS Asset Locations
+
+The GitHub repository is intentionally code-first. The high-fidelity media
+assets are too large for Git and include copyrighted Verbier Festival archive
+materials, so they live on the EMPLUS Synology NAS and in ignored local working
+folders.
+
+On the lab machines, the NAS is expected to be mounted at:
+
+```text
+/Volumes/EMPLUS-Students/
+```
+
+The main source archive is:
+
+```text
+/Volumes/EMPLUS-Students/CDS 2026/Datasets/Verbier Archive/
+```
+
+Important NAS subfolders:
+
+```text
+/Volumes/EMPLUS-Students/CDS 2026/Datasets/Verbier Archive/
+├── Rendered Deliverables/
+│   Rendered audio mixes, stems, manifests, and other prepared web assets
+│   from earlier pipeline iterations.
+└── verbier-1994-2022-photos/Photos/
+    Verbier Festival photo archive used by gallery/prototype views.
+```
+
+Important ignored local working folders inside this project:
+
+```text
+Verbier/
+├── media/
+│   Local piece-level audio/video/score assets used by the current demo.
+│   Expected shape: `media/<piece>/...`, for example `media/Mozart_40/...`.
+├── reorchestrate-poc/lens-assets/
+│   Generated analysis and audio-control assets for Become the Conductor.
+│   Expected shape: `reorchestrate-poc/lens-assets/<piece>/...`.
+├── reorchestrate-poc/stems/
+│   Local source-separation outputs.
+├── reorchestrate-poc/output/
+│   Local experiment outputs.
+└── reorchestrate-poc/plots/
+    Local analysis figures.
+```
+
+During local development, `verbier-curator/vite.config.js` exposes those
+external folders through stable browser URLs:
+
+| Browser URL | Filesystem source | Purpose |
+|---|---|---|
+| `/lens-media/...` | `media/...` | Current piece media used by the conducting demo |
+| `/lens-assets/...` | `reorchestrate-poc/lens-assets/...` | Generated lens/precompute assets |
+| `/verbier-photos/...` | `/Volumes/EMPLUS-Students/CDS 2026/Datasets/Verbier Archive/verbier-1994-2022-photos/Photos/...` | NAS photo archive |
+| `/follow-video/...` | repository root | Local presentation/demo videos when needed |
+| `/assets/...` | `verbier-curator/public/assets/...` | Small tracked manifests/features plus optional legacy audio/stem/video folders |
+
+For reproducibility on a fresh machine:
+
+1. Mount the NAS at `/Volumes/EMPLUS-Students/`.
+2. Clone this repository into the same project-space layout, or update
+   `verbier-curator/vite.config.js` if your local paths differ.
+3. Restore or regenerate ignored runtime assets:
+   - Use `reorchestrate-poc/scripts/precompute_lens.py` to rebuild
+     `reorchestrate-poc/lens-assets/<piece>/`.
+   - Place piece media under `media/<piece>/`.
+   - For older prototype assets, see `data source.md` and restore the relevant
+     `audio/`, `stems/`, `video/`, or manifest folders from
+     `Rendered Deliverables/` into `verbier-curator/public/assets/`.
+4. Start the app from `verbier-curator/` with `npm run dev`.
+
+See `data source.md` for the older recovery notes around rendered deliverables.
+
 ## Frontend App Walkthrough
 
 ```bash
