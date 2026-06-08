@@ -388,7 +388,8 @@ Instead, we will use a **Media String Fallback** parser directly inside the DB R
 - It will parse string equivalents (e.g., `"Mendelssohn String Quartet"`) and inject the Composer explicitly into the `concert_composers` table. 
 - This bypasses the broken early-web HTML, allowing Printed Scores in the physical archive to successfully link to early Audio/Video concerts based entirely on local text analysis!
 
-### ⏳ Remaining Next Steps
+### Remaining Integration Work
 
-1. **Implement Media String Extraction** — Update `build_reconciliation_db.py` to extract Composers from Video DVD track names for 1994-2001 entries.
-2. **Build the navigation UI** — Web interface (`breathing-verbier`) for browsing the fully linked SQLite master database.
+1. **Strengthen work-level matching** — Move beyond composer-level score bridges by matching titles and movements when the metadata is reliable enough.
+2. **Connect archive data to current views** — Use the reconciled SQLite data and `video_audio_matches.json` to enrich the current follow-the-conductor gallery/video path.
+3. **Expose queryable archive data** — Add a lightweight API or export layer so the frontend can query archive relationships dynamically.

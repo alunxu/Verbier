@@ -81,8 +81,9 @@ The output database (`verbier_archive.sqlite`) serves as the authoritative sourc
 
 ```
 Verbier/
-├── README.md                          # (This was in data source.md — recovery guide)
-├── data source.md                     # NAS recovery instructions for media assets
+├── README.md                          # Repository overview and app/data walkthrough
+├── docs/
+│   └── media-assets.md                # NAS/media recovery and runtime asset notes
 ├── verbier_archive.sqlite             # ★ Final reconciled database (1.4 MB)
 │
 ├── inventory/                         # All inventory pipeline code & outputs
@@ -98,24 +99,10 @@ Verbier/
 │   │       └── build_reconciliation_db.py        # Master DB builder
 │   │
 │   ├── programme_data/                # Scraped concert programme JSONs
-│   │   ├── 1997_programme.json        #   8 concerts
-│   │   ├── 2000_programme.json        #   7 concerts
-│   │   ├── 2001_programme.json        #  22 concerts
-│   │   ├── 2002_programme.json        #  30 concerts
-│   │   ├── 2003_programme.json        #  21 concerts
-│   │   ├── 2004_programme.json        # 178 concerts
-│   │   ├── 2005_programme.json        #   8 concerts
-│   │   ├── 2006_programme.json        #  23 concerts
-│   │   ├── 2007_programme.json        # 136 concerts
-│   │   ├── 2008_programme.json        #  76 concerts
-│   │   ├── 2009_programme.json        #  28 concerts
-│   │   ├── 2010_programme.json        # 182 concerts
-│   │   ├── 2011_programme.json        #  88 concerts
-│   │   ├── 2012_programme.json        # 157 concerts
-│   │   ├── 2026_programme.json        # 141 concerts (live site)
+│   │   ├── YYYY_programme.json        # Year-level scraped programme outputs
 │   │   ├── candidate_show_urls.json   # URL cache for Wayback lookups
 │   │   ├── scraping_summary.json      # Machine-readable scraping results
-│   │   └── raw_html/                  # Cached HTML snapshots
+│   │   └── raw_html/                  # Ignored cached HTML snapshots
 │   │
 │   ├── overview/                      # Reports, analysis, and derived data
 │   │   ├── dataset_exploration_report.md    # Full dataset analysis & strategy
@@ -127,22 +114,24 @@ Verbier/
 │   │       ├── parsed_score_metadata.json   # 601 score records
 │   │       └── parsed_video_metadata.json   # 41 video records
 │   │
-│   └── logs/                          # Scraper execution logs
-│       └── scraper_all.log            # Full output log of programme scraping
+│   └── logs/                          # Ignored local scraper execution logs
 │
 └── verbier-curator/                   # Frontend web application (Vite + JS)
-    ├── index.html                     # Entry point
+    ├── index.html                     # Splash entry point
+    ├── choose.html                    # Role choice page
+    ├── become-conductor.html          # Current gesture-controlled experience
+    ├── gesture-guide.html             # Gesture tutorial/reference page
+    ├── follow.html                    # Follow-the-conductor gallery/video view
     ├── package.json
     ├── vite.config.js
     ├── src/
-    │   ├── main.js                    # App initialization & routing
-    │   ├── style.css                  # Global styles
+    │   ├── main.js                    # Splash logic and routing
+    │   ├── style.css                  # Splash/global styles
     │   ├── splash-canvas.js           # Animated splash screen
-    │   ├── breathing-verbier/         # Landscape navigation module
-    │   │   └── landscape.js
-    │   ├── re-orchestrate/            # Gesture-controlled mixing module
+    │   ├── become-conductor/          # Current conducting proxy module
+    │   ├── legacy/                    # Archived earlier prototypes
     │   └── shared/                    # Shared utilities
-    └── public/                        # Static assets (audio/video on NAS)
+    └── public/                        # Static UI assets and lightweight data
 ```
 
 ---
@@ -339,5 +328,5 @@ python3 inventory/scripts/reconciliation/build_reconciliation_db.py
 - [ ] Complete programme scraping for 2013–2025 (currently in progress)
 - [ ] Rebuild `verbier_archive.sqlite` with complete programme data
 - [ ] Implement work-level matching (beyond composer-level) using title fuzzy matching
-- [ ] Integrate `video_audio_matches.json` into the `breathing-verbier` landscape navigator
+- [ ] Connect `video_audio_matches.json` to the current follow-the-conductor gallery/video view
 - [ ] Build a SQLite-backed API for the curator frontend to query the archive dynamically
