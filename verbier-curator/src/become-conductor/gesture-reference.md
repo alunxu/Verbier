@@ -1,7 +1,7 @@
-# Music Lens · Gesture Reference
+# Become the Conductor · Gesture Reference
 
 A practical cheat-sheet matching every gesture to the effect it controls,
-the AudioParam it touches in [`lens-engine.js`](lens-engine.js), and the
+the AudioParam it touches in [`audio-engine.js`](audio-engine.js), and the
 code path that translates one to the other.
 
 Use this side-by-side with the app while testing — every row tells you
@@ -40,9 +40,9 @@ Use this side-by-side with the app while testing — every row tells you
 
 Each row maps a single user gesture to a single engine setter. The "Code"
 column points at the exact line in
-[`lens-gesture-mapper.js`](lens-gesture-mapper.js) where the value is
+[`gesture-to-sound.js`](gesture-to-sound.js) where the value is
 written; the "Engine" column points at
-[`lens-engine.js`](lens-engine.js).
+[`audio-engine.js`](audio-engine.js).
 
 | # | Effect | Triggered by | Range (gesture) | Range (effect) | Engine setter | Mapper section |
 |---|---|---|---|---|---|---|
@@ -65,14 +65,14 @@ written; the "Engine" column points at
 
 ## What "fist closed" actually means
 
-[`gesture-mapping.js`](../re-orchestrate/gesture-mapping.js) uses a
+[`gesture-mapping.js`](../legacy/stem-mixing-prototype/gesture-mapping.js) uses a
 finger-fold heuristic:
 
 > A fist is registered when **at least 3 of the 4 main fingers** (index,
 > middle, ring, pinky) have their tip pulled closer to the wrist than
 > their MCP knuckle, scaled by 1.25× (to allow for natural finger angles).
 
-[`lens-gesture-mapper.js`](lens-gesture-mapper.js) further debounces this
+[`gesture-to-sound.js`](gesture-to-sound.js) further debounces this
 by requiring **3 consecutive frames** of the same state to flip — so
 quick finger flicks won't toggle the EQ Low boost or HPSS jump.
 
@@ -122,13 +122,13 @@ with both.
 Three independent EMAs keep things stable:
 
 ```
-MediaPipe raw landmarks   ──┐ EMA α=0.45  (in lens-hand-tracker._smooth)
+MediaPipe raw landmarks   ──┐ EMA α=0.45  (in hand-camera._smooth)
                             ▼
 Smoothed landmarks ─────────┐ classifyGestures (no smoothing)
                             ▼
-8 mapper params ────────────┐ EMA α=0.35  (in lens-gesture-mapper.update)
+8 mapper params ────────────┐ EMA α=0.35  (in gesture-to-sound.update)
                             ▼
-Engine setter calls ────────┐ setTargetAtTime, τ=0.02s  (in lens-engine)
+Engine setter calls ────────┐ setTargetAtTime, τ=0.02s  (in audio-engine)
                             ▼
 AudioParam glide
 ```
@@ -158,16 +158,16 @@ constant in one file:
 
 | What | Where | Effect of larger value |
 |---|---|---|
-| **EQ ±dB range** | `lens-gesture-mapper.js` line ~37 (`opts.eqRange`) | More dramatic high/mid/low boost |
+| **EQ ±dB range** | `gesture-to-sound.js` line ~37 (`opts.eqRange`) | More dramatic high/mid/low boost |
 | **Reverb max** | `opts.reverbRange[1]` | Wetter at full reach |
 | **Width min/max** | `opts.widthRange` | More extreme stereo collapse / wide |
 | **Master min/max** | `opts.masterRange` | Bigger crescendo range |
 | **Compressor max** | `opts.compRange[1]` | Heavier compression at max hand closeness |
-| **Mapper smoothing α** | `lens-gesture-mapper.js` `EMA_ALPHA` const | Higher = more reactive (less smooth) |
+| **Mapper smoothing α** | `gesture-to-sound.js` `EMA_ALPHA` const | Higher = more reactive (less smooth) |
 | **Tracker landmark α** | `shared/constants.js` `GESTURE.emaAlpha` | Higher = jitterier but lower latency |
-| **Engine ramp τ** | `lens-engine.js` `SMOOTHING` const | Higher = silkier glides, more lag |
-| **Fist debounce frames** | `lens-gesture-mapper.js` `FIST_HYSTERESIS_FRAMES` | Higher = harder to accidentally trigger |
-| **Bounds-decay rate** | `lens-gesture-mapper.js` `_adaptBounds` | Higher = bounds shrink back faster |
+| **Engine ramp τ** | `audio-engine.js` `SMOOTHING` const | Higher = silkier glides, more lag |
+| **Fist debounce frames** | `gesture-to-sound.js` `FIST_HYSTERESIS_FRAMES` | Higher = harder to accidentally trigger |
+| **Bounds-decay rate** | `gesture-to-sound.js` `_adaptBounds` | Higher = bounds shrink back faster |
 
 ---
 
@@ -199,8 +199,8 @@ input and slider input.
 | Symptom | Most likely cause | First check |
 |---|---|---|
 | HUD doesn't change as I move | Either gesture suspension is active or hands aren't being detected | Look at FPS counter in bottom-right; should be ~25-30. If 0, MediaPipe failed; check console. |
-| Effect changes too coarsely | Mapper EMA too low (too reactive) | Increase `EMA_ALPHA` in `lens-gesture-mapper.js` |
-| Audio click/pop on big gesture | Engine ramp too short | Increase `SMOOTHING` constant in `lens-engine.js` |
+| Effect changes too coarsely | Mapper EMA too low (too reactive) | Increase `EMA_ALPHA` in `gesture-to-sound.js` |
+| Audio click/pop on big gesture | Engine ramp too short | Increase `SMOOTHING` constant in `audio-engine.js` |
 | Fist gesture flickers | Hand pose ambiguous | Increase `FIST_HYSTERESIS_FRAMES`. |
 | HPSS knob doesn't sound dramatic | Strict HPSS lost middle content | Re-run `precompute_lens.py --margin 1.0` for softer separation |
 | Stereo width has no effect | Output is mono (e.g. Bluetooth speaker in mono) | Test with stereo headphones |
@@ -211,17 +211,17 @@ input and slider input.
 
 The mapper is structured so adding a 9th gesture takes ~10 lines:
 
-1. In [`gesture-mapping.js`](../re-orchestrate/gesture-mapping.js), add a
+1. In [`gesture-mapping.js`](../legacy/stem-mixing-prototype/gesture-mapping.js), add a
    new field to the `result` object in `classifyGestures()` — e.g. a
    pinch detector returning a 0..1 value.
-2. In [`lens-gesture-mapper.js`](lens-gesture-mapper.js) `update()`, read
+2. In [`gesture-to-sound.js`](gesture-to-sound.js) `update()`, read
    that field and write to a new `target.<param>` slot.
-3. In [`lens-engine.js`](lens-engine.js), add the corresponding setter
+3. In [`audio-engine.js`](audio-engine.js), add the corresponding setter
    (e.g. `setPitch(semitones)` if introducing pitch shift via an
    `AudioWorkletNode`).
-4. In [`lens-overlay-renderer.js`](lens-overlay-renderer.js)
+4. In [`live-overlay.js`](live-overlay.js)
    `_drawParamHUD`, add a row.
-5. In [`lens-app.js`](lens-app.js) `_bindSliders` + the HTML, add a
+5. In [`experience.js`](experience.js) `_bindSliders` + the HTML, add a
    slider so it has a fallback.
 
 Total surface: ~5 small edits in 5 files.

@@ -12,7 +12,7 @@ import { TRANSITION } from './constants.js';
  */
 export async function playTransitionToReOrchestrate(performance) {
     const canvasContainer = document.getElementById('canvas-container');
-    const reContainer = document.getElementById('re-orchestrate-container');
+    const reContainer = document.getElementById('stem-mixing-prototype-container');
 
     return new Promise(resolve => {
         // Phase 1: Fade out landscape
@@ -22,7 +22,7 @@ export async function playTransitionToReOrchestrate(performance) {
         setTimeout(() => {
             canvasContainer.style.display = 'none';
 
-            // Phase 2: Fade in re-orchestrate
+            // Phase 2: fade in the legacy stem-mixing prototype
             reContainer.style.opacity = '0';
             reContainer.classList.add('active');
 
@@ -44,10 +44,10 @@ export async function playTransitionToReOrchestrate(performance) {
  */
 export async function playTransitionToLandscape() {
     const canvasContainer = document.getElementById('canvas-container');
-    const reContainer = document.getElementById('re-orchestrate-container');
+    const reContainer = document.getElementById('stem-mixing-prototype-container');
 
     return new Promise(resolve => {
-        // Phase 1: Fade out re-orchestrate
+        // Phase 1: fade out the legacy stem-mixing prototype
         reContainer.style.transition = `opacity ${TRANSITION.backTransitionDuration}s cubic-bezier(0.25, 0.1, 0.25, 1)`;
         reContainer.style.opacity = '0';
 

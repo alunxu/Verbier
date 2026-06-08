@@ -18,7 +18,7 @@ Verbier/
 Large archival audio/video files and generated lens assets are kept out of
 Git. They are mounted locally at runtime by the Vite dev server.
 
-## Frontend App
+## Frontend App Walkthrough
 
 ```bash
 cd verbier-curator
@@ -30,8 +30,18 @@ Open the local app at:
 
 - `http://127.0.0.1:5173/` - splash entry
 - `http://127.0.0.1:5173/choose.html` - role choice
-- `http://127.0.0.1:5173/lens-app.html` - gesture-driven Music Lens demo
+- `http://127.0.0.1:5173/become-conductor.html` - gesture-driven conducting demo
 - `http://127.0.0.1:5173/follow.html` - conductor-following view
+
+Current user-facing flow:
+
+1. `index.html` shows the Verbier splash screen.
+2. `choose.html` lets visitors choose a role.
+3. `become-conductor.html` opens the gesture-controlled mixing experience.
+4. `follow.html` opens the simplified follow-the-conductor gallery/video view.
+5. Earlier landscape-navigation and stem-mixing experiments are preserved under
+   `verbier-curator/src/legacy/` for reference, but they are not the current
+   presentation path.
 
 See `verbier-curator/README.md` for the app module map and asset mount
 details.
@@ -46,7 +56,8 @@ See `inventory/README.md` for pipeline stages, scripts, and data coverage.
 ## Audio Precompute
 
 The `reorchestrate-poc/scripts/` folder contains offline experiments and
-precompute utilities. The Music Lens demo expects precomputed assets under:
+precompute utilities. The Become the Conductor demo expects precomputed
+assets under:
 
 ```text
 reorchestrate-poc/lens-assets/<piece>/

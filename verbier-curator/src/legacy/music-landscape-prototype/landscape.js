@@ -8,7 +8,7 @@
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { PALETTE, TERRAIN, CAMERA, ENTITY } from '../shared/constants.js';
+import { PALETTE, TERRAIN, CAMERA, ENTITY } from '../../shared/constants.js';
 import { createPerformanceEntity } from './performance-entity.js';
 import { AudioPreviewPlayer } from './audio-preview.js';
 

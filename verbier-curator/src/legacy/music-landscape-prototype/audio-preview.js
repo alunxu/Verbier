@@ -5,7 +5,7 @@
  * Implements crossfading between excerpts.
  */
 
-import { AUDIO_PREVIEW } from '../shared/constants.js';
+import { AUDIO_PREVIEW } from '../../shared/constants.js';
 
 export class AudioPreviewPlayer {
     constructor(audioContext) {

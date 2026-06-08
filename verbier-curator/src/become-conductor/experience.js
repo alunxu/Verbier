@@ -1,5 +1,5 @@
 /**
- * lens-app.js — Music Lens main application orchestrator.
+ * experience.js — Become the Conductor main application orchestrator.
  *
  * Coordinates the state machine across screens:
  *   welcome → picker → loading → tutorial (optional) → demo
@@ -12,10 +12,10 @@
  *   - Slider fallback panel
  */
 
-import { MusicLensEngine } from './lens-engine.js';
-import { LensHandTracker } from './lens-hand-tracker.js';
-import { LensGestureMapper } from './lens-gesture-mapper.js';
-import { LensOverlayRenderer } from './lens-overlay-renderer.js';
+import { MusicLensEngine } from './audio-engine.js';
+import { LensHandTracker } from './hand-camera.js';
+import { LensGestureMapper } from './gesture-to-sound.js';
+import { LensOverlayRenderer } from './live-overlay.js';
 
 // Verbier festival archive photos served via Vite's external mount at /verbier-photos.
 // URL-encoded so spaces / parentheses / accents resolve correctly.

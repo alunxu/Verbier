@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Music Lens — Test Bench</title>
+<title>Audio Controls — Test Bench</title>
 <style>
   body { font-family: system-ui, sans-serif; background:#1a1a1a; color:#eee;
          margin:0; padding:24px; }
@@ -41,7 +41,7 @@
 </head>
 <body>
 
-<h1>🎼 Music Lens — Test Bench</h1>
+<h1>Audio Controls — Test Bench</h1>
 <div class="sub">Real-time effect chain over Verbier recordings. No source separation at runtime.</div>
 
 <div class="pieces" id="pieces">
@@ -104,7 +104,7 @@
 <div class="status" id="status">No piece loaded.</div>
 
 <script type="module">
-import { MusicLensEngine } from './lens-engine.js';
+import { MusicLensEngine } from './audio-engine.js';
 
 const engine = new MusicLensEngine();
 let currentPiece = null;

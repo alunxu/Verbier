@@ -5,7 +5,7 @@
  * Exposes per-stem gain, panning, and reverb controls.
  */
 
-import { GESTURE } from '../shared/constants.js';
+import { GESTURE } from '../../shared/constants.js';
 
 let audioContext;
 let stemSources = {};

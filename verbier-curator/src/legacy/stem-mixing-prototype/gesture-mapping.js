@@ -4,7 +4,7 @@
  * Maps hand positions and finger states to control parameters.
  */
 
-import { HAND_LANDMARKS, GESTURE } from '../shared/constants.js';
+import { HAND_LANDMARKS, GESTURE } from '../../shared/constants.js';
 
 /**
  * Classify gestures from hand landmark data.

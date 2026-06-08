@@ -1,17 +1,16 @@
 /**
  * main.js — Verbier Festival Entry Point
  *
- * Coordinates the two-part installation:
- *   Part 1: Breathing Verbier (landscape navigation)
- *   Part 2: Re-Orchestrate (gesture-controlled mixing)
+ * Coordinates the splash entry and keeps the earlier landscape/stem-mixing
+ * prototype available under src/legacy for reference.
  */
 
 import './style.css';
-import { initLandscape, disposeLandscape, resumeLandscape, stopLandscapeAudio } from './breathing-verbier/landscape.js';
-import { initReOrchestrate, disposeReOrchestrate, startPlayback, stopPlayback } from './re-orchestrate/stem-mixer.js';
-import { initHandTracker, stopHandTracker } from './re-orchestrate/hand-tracker.js';
-import { initOverlay, clearOverlay } from './re-orchestrate/overlay-renderer.js';
-import { initVideoPlayer, disposeVideoPlayer } from './re-orchestrate/video-player.js';
+import { initLandscape, disposeLandscape, resumeLandscape, stopLandscapeAudio } from './legacy/music-landscape-prototype/landscape.js';
+import { initReOrchestrate, disposeReOrchestrate, startPlayback, stopPlayback } from './legacy/stem-mixing-prototype/stem-mixer.js';
+import { initHandTracker, stopHandTracker } from './legacy/stem-mixing-prototype/hand-tracker.js';
+import { initOverlay, clearOverlay } from './legacy/stem-mixing-prototype/overlay-renderer.js';
+import { initVideoPlayer, disposeVideoPlayer } from './legacy/stem-mixing-prototype/video-player.js';
 import { playTransitionToReOrchestrate, playTransitionToLandscape } from './shared/transition.js';
 import { TRANSITION } from './shared/constants.js';
 import { initSplashCanvas, destroySplashCanvas } from './splash-canvas.js';
@@ -19,7 +18,7 @@ import { initSplashCanvas, destroySplashCanvas } from './splash-canvas.js';
 // Application state
 const state = {
     audioContext: null,
-    currentMode: 'splash', // 'splash' | 'landscape' | 'reorchestrate'
+    currentMode: 'splash', // 'splash' plus legacy landscape/stem-mixing states
     selectedPerformance: null,
     performances: [],
     isTransitioning: false,
@@ -92,7 +91,7 @@ async function init() {
 
     enterButton.addEventListener('click', () => {
         // "Begin the Journey" leads to the role-choice page:
-        //   • Become the Conductor → Music Lens (gestural reorchestration)
+        //   • Become the Conductor → Become the Conductor (gestural reorchestration)
         //   • Follow the Conductor → score-synchronised animation (TBD)
         destroySplashCanvas();
         splashScreen.classList.add('hidden');
@@ -179,7 +178,7 @@ async function enterReOrchestrateMode(performance) {
         }, 100);
     }
 
-    const container = document.getElementById('re-orchestrate-container');
+    const container = document.getElementById('stem-mixing-prototype-container');
     container.classList.add('active');
     
     // Hide landscape UI
@@ -257,7 +256,7 @@ async function exitReOrchestrateMode() {
     if (state.isTransitioning) return;
     state.isTransitioning = true;
 
-    console.log('Returning to Breathing Verbier');
+    console.log('Returning to archive landscape');
 
     // Stop playback and hand tracking
     stopPlayback();
@@ -265,7 +264,7 @@ async function exitReOrchestrateMode() {
     clearOverlay();
 
     // Hide UI elements
-    document.getElementById('re-orchestrate-container').classList.remove('active');
+    document.getElementById('stem-mixing-prototype-container').classList.remove('active');
     document.getElementById('performance-info').classList.remove('visible');
     document.getElementById('back-button').classList.remove('visible');
     document.getElementById('fallback-mixer').style.display = 'none';

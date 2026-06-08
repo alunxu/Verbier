@@ -643,7 +643,7 @@ body {
 /* ============================================================
    Re-Orchestrate Mode
    ============================================================ */
-#re-orchestrate-container {
+#stem-mixing-prototype-container {
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -651,7 +651,7 @@ body {
   background: var(--color-bg-deep);
 }
 
-#re-orchestrate-container.active {
+#stem-mixing-prototype-container.active {
   display: block;
 }
 

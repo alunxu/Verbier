@@ -5,7 +5,7 @@
  * and maps them to audio parameters.
  */
 
-import { GESTURE, HAND_LANDMARKS, INSTRUMENT_REGISTER } from '../shared/constants.js';
+import { GESTURE, HAND_LANDMARKS, INSTRUMENT_REGISTER } from '../../shared/constants.js';
 import { setStemGain, setStemPan, setStemMuted, setAllGains } from './stem-mixer.js';
 import { classifyGestures } from './gesture-mapping.js';
 import { drawHandOverlay } from './overlay-renderer.js';

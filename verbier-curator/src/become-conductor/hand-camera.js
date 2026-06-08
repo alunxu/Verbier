@@ -1,14 +1,14 @@
 /**
- * lens-hand-tracker.js — Minimal MediaPipe wrapper for the Music Lens app.
+ * hand-camera.js — Minimal MediaPipe wrapper for the Become the Conductor app.
  *
- * Differences from re-orchestrate/hand-tracker.js:
+ * Differences from stem-mixing-prototype/hand-tracker.js:
  *   - Decoupled from audio. Just emits (hands, gestures) via a callback.
  *   - No instrument-to-hand assignment, no stem control.
  *   - Plays nice with multiple consumers (gesture mapper + overlay renderer).
  */
 
 import { GESTURE } from '../shared/constants.js';
-import { classifyGestures } from '../re-orchestrate/gesture-mapping.js';
+import { classifyGestures } from '../legacy/stem-mixing-prototype/gesture-mapping.js';
 
 export class LensHandTracker {
   constructor() {

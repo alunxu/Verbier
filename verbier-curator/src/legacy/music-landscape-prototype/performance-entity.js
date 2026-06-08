@@ -6,7 +6,7 @@
  */
 
 import * as THREE from 'three';
-import { ENTITY, CHROMA_HUE_MAP } from '../shared/constants.js';
+import { ENTITY, CHROMA_HUE_MAP } from '../../shared/constants.js';
 
 /**
  * Create a performance entity mesh group.

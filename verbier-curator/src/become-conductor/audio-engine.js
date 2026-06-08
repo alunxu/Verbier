@@ -1,5 +1,5 @@
 /**
- * lens-engine.js — Music Lens runtime audio engine.
+ * audio-engine.js — Become the Conductor runtime audio engine.
  *
  * Plays a pre-computed (mix, harmonic, percussive) trio in sync and runs it
  * through a real-time effect chain controllable by gestures or UI.

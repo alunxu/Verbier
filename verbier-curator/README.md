@@ -8,25 +8,40 @@ Vite frontend for the Verbier Festival interactive archive prototypes.
 |---|---|
 | `/` | Splash screen and entry into the experience |
 | `/choose.html` | Role choice: Become the Conductor / Follow the Conductor |
-| `/lens-app.html` | Music Lens gesture-control demo |
-| `/lens-instructions.html` | Gesture-control documentation screen |
+| `/become-conductor.html` | Gesture-control experience for shaping a performance mix |
+| `/gesture-guide.html` | Gesture-control documentation screen |
 | `/follow.html` | Score/conductor-following view |
+
+## Experience Walkthrough
+
+1. **Splash** (`index.html`) introduces the Verbier Festival archive.
+2. **Choose a role** (`choose.html`) routes visitors into one of two current
+   presentation paths.
+3. **Become the Conductor** (`become-conductor.html`) lets visitors use hand
+   gestures as a conducting proxy. Gestures control mix-level parameters such
+   as EQ, reverb, stereo width, compression, master gain, and attack texture.
+4. **Follow the Conductor** (`follow.html`) keeps the interaction simpler: a
+   gallery/video-led view for following a performance.
+5. **Legacy prototypes** live under `src/legacy/`. They are useful context but
+   are not the current demo route.
 
 ## Source Map
 
 ```text
 src/
-├── main.js                 # Splash and original landscape/re-orchestrate shell
+├── main.js                 # Splash entry and route into the role-choice page
 ├── splash-canvas.js        # Audio-reactive splash background
-├── style.css               # Shared styles for the original shell
-├── breathing-verbier/      # 3D landscape and archive navigation
-├── re-orchestrate/         # Earlier stem-mixing prototype
-├── music-lens/             # Current gesture-driven mixing demo
+├── style.css               # Splash and legacy shell styles
+├── become-conductor/       # Current gesture-driven conducting experience
+├── legacy/                 # Earlier prototypes kept for reference
+│   ├── music-landscape-prototype/  # Previous 3D music-landscape navigation concept
+│   └── stem-mixing-prototype/ # Previous per-stem hand-mixing experiment
 └── shared/                 # Shared constants, UI helpers, transitions
 ```
 
-`src/music-lens/` is the main demo used for gesture-controlled mixing. Its
-own README explains the Web Audio graph, gesture mapper, and fallback UI.
+`src/become-conductor/` is the main demo used for gesture-controlled
+conducting. Its own README explains the Web Audio graph, gesture mapper,
+and fallback UI.
 
 ## Local Development
 

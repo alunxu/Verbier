@@ -1,5 +1,5 @@
 /**
- * lens-overlay-renderer.js — Canvas overlay drawing hand skeletons and a HUD.
+ * live-overlay.js — Canvas overlay drawing hand skeletons and a HUD.
  *
  * The overlay sits transparently on top of the video element. It renders:
  *   - hand skeleton (21 landmarks, mirrored to match webcam preview)

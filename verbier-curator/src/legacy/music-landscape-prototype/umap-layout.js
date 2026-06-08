@@ -2,7 +2,7 @@
  * umap-layout.js — Maps UMAP 2D coordinates to 3D terrain positions
  */
 
-import { TERRAIN } from '../shared/constants.js';
+import { TERRAIN } from '../../shared/constants.js';
 
 /**
  * Load UMAP positions from JSON and merge into performances.

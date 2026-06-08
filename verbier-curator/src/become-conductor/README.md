@@ -1,4 +1,4 @@
-# Music Lens
+# Become the Conductor
 
 Real-time gestural reorchestration of Verbier Festival recordings using
 hand tracking and Web Audio effects — no source separation at runtime.
@@ -6,14 +6,26 @@ hand tracking and Web Audio effects — no source separation at runtime.
 Built as the curator's "Mode B" alternative to per-instrument stem mixing,
 because classical orchestral source separation from a stereo mixdown is
 fundamentally limited (timpani / low strings overlap in time, frequency,
-and stereo image — they cannot be cleanly split). The lens approach
+and stereo image — they cannot be cleanly split). The gesture-mixing approach
 treats the mix as sacred and reshapes it through a focused chain of
 audio effects: 3-band EQ, stereo width, reverb, compressor, and an
 HPSS-based melody/rhythm balance.
 
-**See also**: [`gestures.md`](gestures.md) — practical cheat-sheet
+**See also**: [`gesture-reference.md`](gesture-reference.md) — practical cheat-sheet
 matching every gesture to the AudioParam it touches and the file/line
 where you'd tune it.
+
+## What Visitors Experience
+
+1. Choose a musical excerpt.
+2. Complete a short gesture tutorial.
+3. Watch the live performance video while using hands to shape the sound.
+4. Hear immediate changes in tone, space, dynamics, attack, and loudness.
+5. Fall back to sliders if camera access is unavailable.
+
+The interaction is intentionally a conducting proxy: gestures do not edit
+the score, tempo, or notes. They control expressive mixing parameters that
+make the recording feel responsive.
 
 ## Quick start
 
@@ -25,9 +37,9 @@ npm run dev            # starts Vite at http://localhost:5173
 
 Then open:
 
-- [http://localhost:5173/lens-app.html](http://localhost:5173/lens-app.html) — the demo
-- [http://localhost:5173/lens-instructions.html](http://localhost:5173/lens-instructions.html) — full documentation
-- [http://localhost:5173/src/music-lens/lens-test.html](http://localhost:5173/src/music-lens/lens-test.html) — slider-only test bench
+- [http://localhost:5173/become-conductor.html](http://localhost:5173/become-conductor.html) — the demo
+- [http://localhost:5173/gesture-guide.html](http://localhost:5173/gesture-guide.html) — full documentation
+- [http://localhost:5173/src/become-conductor/audio-controls-test.html](http://localhost:5173/src/become-conductor/audio-controls-test.html) — slider-only test bench
 
 If a webcam isn't available or permission is denied, the app falls back
 to slider-only control. Four mood presets work either way.
@@ -36,18 +48,18 @@ to slider-only control. Four mood presets work either way.
 
 | File | Role |
 |---|---|
-| `lens-engine.js` | Web Audio effect graph and 3-source playback (mix + harmonic + percussive in sync). Exposes 8 setter methods + 4 presets. |
-| `lens-hand-tracker.js` | Minimal MediaPipe Hands wrapper. Calls a callback with `(hands, gestures)` per frame. |
-| `lens-gesture-mapper.js` | Maps hand landmarks to the 8 effect parameters with adaptive calibration and EMA smoothing. |
-| `lens-overlay-renderer.js` | Canvas overlay drawing hand skeletons, parameter HUD, VU meter. |
-| `lens-app.js` | App orchestrator and state machine (welcome → picker → loading → calibration → demo). |
-| `lens-styles.css` | All app styling. |
-| `lens-test.html` | Standalone slider test bench (for engine debugging). |
+| `audio-engine.js` | Web Audio effect graph and 3-source playback (mix + harmonic + percussive in sync). Exposes 8 setter methods + 4 presets. |
+| `hand-camera.js` | Minimal MediaPipe Hands wrapper. Calls a callback with `(hands, gestures)` per frame. |
+| `gesture-to-sound.js` | Maps hand landmarks to the 8 effect parameters with adaptive calibration and EMA smoothing. |
+| `live-overlay.js` | Canvas overlay drawing hand skeletons, parameter HUD, VU meter. |
+| `experience.js` | App orchestrator and state machine (welcome → picker → loading → calibration → demo). |
+| `styles.css` | All app styling. |
+| `audio-controls-test.html` | Standalone slider test bench (for engine debugging). |
 
 In `verbier-curator/` (root level):
 
-- `lens-app.html` — full demo entry point (welcome / picker / demo screens)
-- `lens-instructions.html` — standalone documentation page
+- `become-conductor.html` — full demo entry point (welcome / picker / demo screens)
+- `gesture-guide.html` — standalone documentation page
 
 ## Pre-computed assets
 
@@ -200,7 +212,7 @@ explicitly serves the two external directories. See `vite.config.js`.
   but functionally the same approach (height + side + fist). For more
   expressive demos, additional gestures (pinch, point, rotate) could
   drive more parameters. Adding them is a matter of extending
-  `gesture-mapping.js` and `lens-gesture-mapper.js`.
+  `gesture-mapping.js` and `gesture-to-sound.js`.
 - **No test for handsAcrossBody.** When users cross their hands
   mid-performance (visually intuitive for "swap"), MediaPipe usually
   re-classifies them — but the current mapper treats this as a normal

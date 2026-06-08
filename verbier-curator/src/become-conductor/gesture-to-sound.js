@@ -1,5 +1,5 @@
 /**
- * lens-gesture-mapper.js — Map MediaPipe hand landmarks to 8 effect parameters.
+ * gesture-to-sound.js — Map MediaPipe hand landmarks to 8 effect parameters.
  *
  * Mapping ("conductor metaphor"):
  *   LEFT HAND  = "shape of sound"
