@@ -14,10 +14,57 @@ This repository combines three related pieces of work:
 3. A set of **offline audio-precompute experiments** that prepare analysis
    assets for the gesture-controlled conducting demo.
 
+## Run The Local NAS Demo
+
+The demo uses copyrighted Verbier Festival archive media and should be run
+locally from this NAS folder rather than deployed online.
+
+From the project root:
+
+```bash
+./demo/run-demo.sh
+```
+
+Or double-click `RUN_DEMO.command` on macOS.
+
+Then open:
+
+```text
+http://127.0.0.1:5173/
+http://127.0.0.1:5173/choose.html
+```
+
+To check the local setup before launching:
+
+```bash
+./demo/check-demo.sh
+```
+
+If the NAS is mounted over VPN, first media loads may be slow because the demo
+streams large local audio/video files from the NAS. For the smoothest review,
+run from the campus/local network or copy this project folder to a local disk
+and run the same command there.
+
+See `demo/README.md` for troubleshooting, asset locations, and alternate port
+instructions.
+
 ```text
 Verbier/
 ├── README.md
 │   Repository overview, local setup notes, and high-level walkthrough.
+│
+├── RUN_DEMO.command
+│   macOS double-click launcher for the local NAS demo.
+│
+├── demo/
+│   Local demo handoff folder for reviewers.
+│
+│   ├── README.md
+│   │   Reviewer instructions, asset locations, and troubleshooting.
+│   ├── run-demo.sh
+│   │   Starts the local static demo server from the NAS project folder.
+│   └── check-demo.sh
+│       Preflight check for Node, app files, media folders, and server URL.
 │
 ├── docs/
 │   Submission-facing project notes that are useful across the app, inventory,

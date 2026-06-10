@@ -1,4 +1,3 @@
-import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import { existsSync, createReadStream, statSync } from 'fs';
 
@@ -41,7 +40,7 @@ function externalStaticMounts(mounts) {
 
 const projectRoot = resolve(__dirname, '..');
 
-export default defineConfig({
+export default {
     base: './',
     root: '.',
     publicDir: 'public',
@@ -55,7 +54,7 @@ export default defineConfig({
     ],
     server: {
         port: 5173,
-        open: true,
+        open: false,
         fs: {
             allow: ['..', '../..']
         }
@@ -65,4 +64,4 @@ export default defineConfig({
         assetsInlineLimit: 0
     },
     assetsInclude: ['**/*.ogg', '**/*.mp3', '**/*.wav', '**/*.mp4', '**/*.webm']
-});
+};
